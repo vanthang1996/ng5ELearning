@@ -1,0 +1,54 @@
+<!-- navbar large -->
+<div class="hbe-navbar-large fixed-top">
+  <nav class="navbar navbar-expand-lg justify-content-between be-navbar-lg shrink">
+    <a class="navbar-brand ml-5" [routerLink]="['/']">ELearning</a>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" mat-raised-button color="primary" [routerLink]="['/']">
+          <i class="fas fa-home"></i> Trang chủ
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" mat-raised-button color="primary" data-toggle="modal" data-target="#modal-notify">
+          <i class="fas fa-comment"></i>
+          <span class="badge badge-pill badge-light">1</span>
+          Thông báo
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="logout()" class="nav-link" mat-raised-button color="primary" [routerLink]="['/login']">
+          <i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<!-- navbar small -->
+<div class="be-navbar-sm">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark be-navbar">
+    <a class="navbar-brand" [routerLink]="['/']">ELearning</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#benav-content" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="benav-content">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/']">
+            <i class="fas fa-home"></i> Trang chủ
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <app-notify-message></app-notify-message>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" [routerLink]="['/login']">
+            <i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

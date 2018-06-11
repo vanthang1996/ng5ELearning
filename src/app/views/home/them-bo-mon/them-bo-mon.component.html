@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <h5 class="font-weight-bold">Thêm bộ môn</h5>
+  Khoa Công nghệ thông tin
+  <div class="mt-5">
+    <mat-card>
+      <form>
+        <mat-card-header>
+          <mat-card-title class="p-3">
+            <h5>Nhập thông tin bộ môn</h5>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-body">
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+              <label class="font-weight-bold" for="tenbomon">Tên bộ môn</label>
+              <input type="text" class="form-control" id="tenbomon" ngModel name="departmentName" placeholder="Nhập tên bộ môn">
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold" for="khoa">Khoa</label>
+              <select class="form-control" id="khoa" ngModel name="facultyId">
+                <option *ngFor="let f of facultyModel" [value]="f.facultyId">{{f.facultyName}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold" for="tbm">Trưởng bộ môn</label>
+              <select class="form-control" id="tbm" ngModel name="teacherManagementId">
+                <option *ngFor="let t of teacherModel" [value]="t.teacherId">{{t.firstName}} {{t.lastName}}</option>
+              </select>
+            </div>
+            <mat-card-actions class="text-right p-3 mr-3">
+              <button type="submit" mat-raised-button color="primary">Xác nhận</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+</div>

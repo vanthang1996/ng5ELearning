@@ -1,0 +1,76 @@
+.btn-get-started
+	padding: 1rem 1.5rem
+	font:
+		size: 1.5rem
+	background: #fff
+	color: $blue-color
+	border-radius: 10rem
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=16, Direction=0, Color=#2E2E2E)";/*IE 8*/
+	-moz-box-shadow: 0 3px 16px -4px #2E2E2E;/*FF 3.5+*/
+	-webkit-box-shadow: 0 3px 16px -4px #2E2E2E;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+	box-shadow: 0 3px 16px -4px #2E2E2E;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=16, Direction=135, Color=#2E2E2E); /*IE 5.5-7*/
+	&:hover
+		color: #2E2E2E
+
+.be-btn-blue
+	padding: .5rem 1rem
+	font:
+		size: 1rem
+	background: $blue-color
+	color: #fff
+	border-radius: 10rem
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=16, Direction=0, Color=#2E2E2E)";/*IE 8*/
+	-moz-box-shadow: 0 3px 16px -4px #2E2E2E;/*FF 3.5+*/
+	-webkit-box-shadow: 0 3px 16px -4px #2E2E2E;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+	box-shadow: 0 3px 16px -4px #2E2E2E;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=16, Direction=135, Color=#2E2E2E); /*IE 5.5-7*/
+	&:hover
+		background: $blue-color - 30
+		color: #fff - 50
+
+.be-btn-red
+	padding: .5rem 1rem
+	font:
+		size: 1rem
+	background: $red-color
+	color: #fff
+	border-radius: 10rem
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=16, Direction=0, Color=#2E2E2E)";/*IE 8*/
+	-moz-box-shadow: 0 3px 16px -4px #2E2E2E;/*FF 3.5+*/
+	-webkit-box-shadow: 0 3px 16px -4px #2E2E2E;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+	box-shadow: 0 3px 16px -4px #2E2E2E;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=16, Direction=135, Color=#2E2E2E); /*IE 5.5-7*/
+	&:hover
+		background: $red-color - 30
+		color: #fff - 50
+
+.btn-minimum
+	font:
+		size: 0.5rem
+	background: #F6BF08
+	padding: 0.5rem 0.65rem
+	border: 1px solid #333
+	box-shadow: 0
+	border-radius: 50%
+
+@mixin border-radius($color)
+	padding: .5rem 1rem
+	font:
+		size: 1rem
+	background: $color
+	color: #fff
+	border-radius: 20px
+	&:hover
+		background: $color - 20
+
+
+.be-btn-db
+	@include border-radius(#2a80dd)
+
+.be-btn-dr
+	@include border-radius(#ea3143)
+
+.be-btn-dw
+	@include border-radius(#e5e3e3)
+	color: #444444

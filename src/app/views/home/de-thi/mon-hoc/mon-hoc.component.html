@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <h5 class="font-weight-bold">Danh sách môn học</h5>
+  Khoa Công nghệ thông tin
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-5" *ngFor="let s of subject">
+        <mat-card class="mat-card-sub">
+          <mat-card-header class="card-header">
+            <mat-card-title>
+              <h5>{{s.subjectName}}</h5>
+            </mat-card-title>
+          </mat-card-header>
+          <img class="card-img-top" src="../assets/images/Sell-course-online.gif" class="img-card" alt="Card image cap">
+          <mat-card-content class="card-body">
+            <span>Giảng viên quản lý:
+              <b>{{s.teacherManagement.firstName}} {{s.teacherManagement.lastName}}</b>
+            </span>
+          </mat-card-content>
+          <mat-card-actions class="p-3">
+            <button mat-raised-button color="primary" [routerLink]="['/de-thi/danh-sach/' + s.subjectId]">Chi tiết</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,196 @@
+@media screen and (min-width: 992px)
+	.hbe-navbar-large
+		display: block
+		-webkit-transition: .5s
+		transition: .5s
+		.be-navbar-lg
+			-webkit-transition: .5s
+			transition: .5s
+			background: #3f51b5
+			border: none
+			box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+			.navbar-brand
+				font:
+					weight: bold
+					size: 3rem
+				color: #ffffff
+				cursor: pointer
+				-webkit-transition: .5s
+				transition: .5s
+				&:hover
+					color: #ffffff
+			.navbar-nav
+				.nav-item
+					.mat-raised-button:not([class*=mat-elevation-z])
+						box-shadow: none
+						border-radius: 0
+					.nav-link
+						-webkit-transition: .5s
+						transition: .5s
+						font:
+							size: 2rem
+						color: #ffffff
+						padding: 1.1rem 1.5rem
+					&:hover
+						background: #F8F9FD
+						& > .nav-link
+							color: #ffffff
+
+					.menu-notify
+						min-width: 500px
+						max-width: 500px
+						max-height: 500px
+						left: -200px
+						overflow: auto
+						border-radius: 0
+						padding: 5px 0
+						&::-webkit-scrollbar
+							width: 7px
+							background-color: #fff
+
+						&::-webkit-scrollbar-thumb 
+							background-color: #999
+
+						&::-webkit-scrollbar-track 
+							-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.6)
+							background-color: #fff
+						.list-unstyled
+							.media
+								border-bottom: 1px solid rgba(0, 0, 0, .15)
+								&:last-child
+									border-bottom: 0
+								img
+									margin: 5px
+									width: 100%
+									max-width: 100px
+									min-width: 100px
+							.media-body
+								padding: 5px
+
+		.shrink
+			-webkit-transition: .5s
+			transition: .5s
+			padding: 0 1rem
+			.navbar-brand
+				font:
+					weight: bold
+					size: 2rem
+				color: #ffffff
+				cursor: pointer
+				-webkit-transition: .5s
+				transition: .5s
+				&:hover
+					color: #c6c6c6
+			.navbar-nav
+				.nav-item
+					.nav-link
+						font:
+							size: 1.2rem
+						color: #ffffff
+						padding: 1.1rem 1.5rem
+						-webkit-transition: .5s
+						transition: .5s
+					&:hover
+						background: #F8F9FD
+						& > .nav-link
+							color: #c6c6c6
+
+	.hbe-navbar-small
+		display: none
+	.be-navbar-sm
+		display: none
+	.modal-notify
+		display: none
+	.modal-notify
+		.modal-body
+			border-radius: 0
+			padding: 5px 0
+			.list-unstyled
+				.media
+					border-bottom: 1px solid rgba(0, 0, 0, .15)
+					&:last-child
+						border-bottom: 0
+					img
+						margin: 5px
+						width: 100%
+						max-width: 100px
+						min-width: 100px
+						.media-body
+							padding: 5px
+@media (max-width: 991px)
+	.hbe-navbar-large
+		display: none
+
+	.be-navbar-sm
+		display: block
+		.be-navbar
+			background: #3f51b5
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)
+			.navbar-brand
+				font:
+					weight: bold
+					size: 2rem
+				color: #ffffff
+				cursor: pointer
+				-webkit-transition: .5s
+				transition: .5s
+				&:hover
+					color: #ffffff
+			.navbar-collapse
+				.navbar-nav
+					.nav-item
+						.nav-link
+							outline: 0
+	.hbe-navbar-small
+		display: block
+		.be-navbar-sm
+			background: #ffffff
+			.be-navbar-sm-item
+				padding: 1rem 0
+				text-align: center
+				.nav-brand
+					cursor: pointer
+					font:
+						weight: bold
+						size: 1.2rem
+					color: #4C5154
+				.nav-item
+					font:
+						weight: bold
+						size: 1.2rem
+					color: #4C5154
+					cursor: pointer
+					-webkit-transition: .5s
+					transition: .5s	
+				&:hover
+					background: #F8F9FD
+					& > .nav-item, & > .nav-brand
+						color: #4C5154	
+			
+			@media (min-width: 576px)
+				.none-show-ex
+					display: block
+				.show-ex
+					display: none
+
+			@media (max-width: 575px)
+				.none-show-ex
+					display: none
+				.show-ex
+					display: block
+	.modal-notify
+		.modal-body
+			border-radius: 0
+			padding: 5px
+			.list-unstyled
+				.media
+					border-bottom: 1px solid rgba(0, 0, 0, .15)
+					&:last-child
+						border-bottom: 0
+					img
+						margin: 5px
+						width: 100%
+						max-width: 100px
+						min-width: 100px
+						.media-body
+							padding: 5px

@@ -1,0 +1,58 @@
+<div class="sign-content">
+  <div class="sign-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-4 offset-xl-4">
+          <div class="card card-sign">
+            <div class="card-body">
+              <div class="text-center py-3">
+                <a class="navbar-brand">ELearning</a>
+              </div>
+              <form name="form" (ngSubmit)="loginFormGroup.valid && login()" [formGroup]="loginFormGroup" novalidate>
+                <div class="form-group">
+                  <label class="font-weight-bold" for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" formControlName="email" required />
+                  <div class="help-block">
+                    <small class="form-text text-muted" *ngIf="loginFormGroup.controls['email'].errors && ( loginFormGroup.controls['email'].dirty || loginFormGroup.controls['email'].touched)">
+                      <p style="color: red " *ngIf="loginFormGroup.controls['email'].errors.required"> &nbsp;&nbsp; Email không được để trống </p>
+                      <p style="color: red " *ngIf="loginFormGroup.controls['email'].errors.pattern"> &nbsp;&nbsp; Email nhập không hợp lệ </p>
+                    </small>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': loginFormGroup.submitted && !password.valid }">
+                  <label class="font-weight-bold" for="password">Mật khẩu</label>
+                  <input type="password" class="form-control" id="password" name="password" formControlName="password" required />
+                  <div class="help-block">
+                    <small class="form-text text-muted" *ngIf="loginFormGroup.controls['password'].errors && ( loginFormGroup.controls['password'].dirty || loginFormGroup.controls['password'].touched)">
+                      <p style="color: red " *ngIf="loginFormGroup.controls['password'].errors.required"> &nbsp;&nbsp; Mật khẩu không được để trống </p>
+                      <p style="color: red " *ngIf="loginFormGroup.controls['password'].errors.pattern"> &nbsp;&nbsp; Mật khẩu nhập không hợp lệ </p>
+                    </small>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Ghi nhớ tôi!</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button [disabled]="loading" mat-raised-button color="warn" class="btn-block">
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    /> Đăng nhập
+                  </button>
+                </div>
+                <div class="text-right">
+                  <a href="">Quên mật khẩu?</a>
+                </div>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
