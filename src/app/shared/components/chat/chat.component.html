@@ -1,0 +1,71 @@
+<div class="content-out-chat">
+
+  <!-- chat -->
+  <div class="chatlist">
+    <div class="chatlist-header">
+      <a class="btn-block p-2 font-weight-bold text-uppercase oc-chatlist" href="#chatlist" data-toggle="collapse" data-target="#chatlist">
+        <i class="fas fa-address-book"></i>
+        Chat list
+      </a>
+    </div>
+    <div class="collapse multi-collapse" id="chatlist">
+      <div class="card card-body chatlist-body">
+        <ul class="list-group list-group-flush list-body">
+          <li class="list-group-item">
+            <a (click)="openChatBox()" class="item-chatlist">Trần Lê Như Quỳnh</a>
+          </li>
+          <li class="list-group-item">
+            <a (click)="openChatBox()" class="item-chatlist">Trần Lê Như Quỳnh</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-box" *ngIf="showChatBox">
+    <div class="chatlist-header">
+      <div class="row">
+        <div class="col-9">
+          <a class="btn-block p-1 oc-chatlist" href="#chatbox" data-toggle="collapse" data-target="#chatbox">
+            Trần Lê Như Quỳnh
+          </a>
+        </div>
+        <div class="col-3 text-center">
+          <button type="button" class="close pr-3 pt-1" (click)="closeChatBox()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="collapse show multi-collapse" id="chatbox">
+      <div class="card card-body chatbox-body">
+        <div class="chat-content">
+          <div class="your-chat">
+            <small>Như Quỳnh</small>
+            <div class="your-content">
+              Xin chào! Xin chào! Xin chào! Xin chào!
+            </div>
+          </div>
+          <div class="my-chat">
+            <small>Văn Tính</small>
+            <div class="my-content">
+              Xin chào!
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chatbox-footer">
+        <div class="form-send p-1">
+          <div class="input-send">
+            <input type="text" class="input-chat-send">
+          </div>
+          <div class="btn-send">
+            <button class="btn-chat-send">
+              <i class="fab fa-telegram-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

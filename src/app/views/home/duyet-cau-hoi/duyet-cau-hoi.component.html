@@ -1,0 +1,118 @@
+<div class="container-fluid">
+  <h5 class="card-title font-weight-bold text-uppercase">Duyệt câu hỏi</h5>
+  Khoa Công nghê Thông tin
+  <div class="mt-5 mb-3">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3 mb-5">
+        <mat-card class="mat-card-sub">
+          <mat-card-header class="card-header">
+            <mat-card-title>
+              <b>Giảng viên</b>
+            </mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="img-card" alt="Photo of a Shiba Inu">
+          <mat-card-content class="card-body">
+            <h5 class="text-uppercase">
+              <b>{{teacherModel?.firstName}} {{teacherModel?.lastName}}</b>
+            </h5>
+            <br/>
+            <span>
+              <i class="fas fa-envelope"></i>&nbsp;
+              <b>{{teacherModel?.email}}</b>
+            </span>
+            <br/>
+            <span>
+              <i class="fas fa-mobile-alt"></i>&nbsp;
+              <b>{{teacherModel?.phoneNumber}}</b>
+            </span>
+            <br/>
+            <span>
+              <i class="fas fa-birthday-cake"></i>&nbsp;
+              <b>{{teacherModel?.birthDay | date:"dd/MM/y"}}</b>
+            </span>
+          </mat-card-content>
+          <!-- <mat-card-actions class="p-3">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target=".xemchitiet-modal-lg">Chi tiết</button>
+          </mat-card-actions> -->
+        </mat-card>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-9 mb-5">
+        <h4 class="text-danger" *ngIf="!checkJob">{{message}}</h4>
+        <mat-card class="my-3" *ngIf="checkJob">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <tbody>
+                <tr>
+                  <td scope="col">Mã công việc:</td>
+                  <td>{{jobModel?.jobId}}</td>
+                </tr>
+                <tr>
+                  <td scope="col">Thời gian bắt đầu:</td>
+                  <td>{{jobModel?.startTime | date:"dd/MM/y"}}</td>
+                </tr>
+                <tr>
+                  <td scope="col">Thời gian kết thúc:</td>
+                  <td>{{jobModel?.endTime | date:"dd/MM/y"}}</td>
+                </tr>
+                <tr>
+                  <td scope="col">Nội dung:</td>
+                  <td>{{jobModel?.jobContent}}</td>
+                </tr>
+                <tr>
+                  <td scope="col">Trạng thái:</td>
+                  <td>{{jobModel?.status}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card>
+        <mat-card *ngIf="checkJob">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Chương</th>
+                  <th scope="col">Mục tiêu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of createQuestionModel">
+                  <td scope="col">{{c?.chapter?.chapterName}}</td>
+                  <td>{{c?.amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card>
+        <div class="text-right py-3" *ngIf="checkJob">
+          <button mat-raised-button color="warn">
+            <i class="fas fa-times"></i> Không chấp nhận
+          </button>
+          <button class="ml-2" mat-raised-button color="primary">
+            <i class="fas fa-save"></i> Không chấp nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="checkJob">
+    <h3>Danh sách câu hỏi</h3>
+    <mat-accordion>
+      <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let q of questionModel; let i = index" [attr.data-index]="i">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Câu hỏi {{i+1}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-chip-list class="mb-3">
+          <mat-chip color="primary" selected="true">{{q?.chapter?.chapterName}}</mat-chip>
+          <mat-chip [color]="[(q?.level?.levelId == 1) ? 'warn' : 'accent']" selected="true">{{q?.level?.levelName}}</mat-chip>
+        </mat-chip-list>
+        <div class="my-2">{{q?.content}}</div>
+        <div class="custom-control custom-checkbox my-2" *ngFor="let a of q?.answers; let j = index" [attr.data-index]="j">
+          <label class="custom-control-label" [class]="[a?.correctAnswer ? 'text-danger' : '']" for="customCheckDisabled"><b>{{(j === 0) ? 'A' : ((j === 1) ? 'B' : ((j === 2) ? 'C' : 'D'))}}.</b> {{a?.content}}</label>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

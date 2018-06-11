@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <h5 class="card-title font-weight-bold text-uppercase">Chi tiết công việc</h5>
+  Khoa Công nghê Thông tin
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-5">
+        <mat-card class="mat-card-sub">
+          <mat-card-header class="card-header">
+            <mat-card-title>Tên công việc</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="img-card" alt="Photo of a Shiba Inu">
+          <mat-card-content class="card-body">
+            <span>Tên giảng viên:
+              <b>Trần Lê Như Quỳnh</b>
+            </span>
+            <br/>
+            <span>Loại công việc:
+              <b>Loại công việc</b>
+            </span>
+            <br/>
+            <span class="badge badge-pill badge-success">26/04/2018</span>
+            <i class="fas fa-arrow-right"></i>
+            <span class="badge badge-pill badge-danger">27/04/2018</span>
+            <br/>
+          </mat-card-content>
+          <mat-card-actions class="p-3">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target=".xemchitiet-modal-lg">Chi tiết</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade xemchitiet-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tạo cấu trúc đề thi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="macongviec">Mã công việc</label>
+            <input type="text" class="form-control" id="macongviec" value="1" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="mamon">Mã môn</label>
+            <input type="text" class="form-control" id="mamon" value="2" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="tenmon">Tên môn</label>
+            <input type="text" class="form-control" id="tenmon" value="HTTTQL" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="giangvien">Giảng viên</label>
+            <input type="text" class="form-control" id="giangvien" value="Trần Lê Như Quỳnh" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="loaicongviec">Loại công việc</label>
+            <input type="text" class="form-control" id="loaicongviec" value="Tạo câu hỏi" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="ngaybatdau">Ngày bắt đầu</label>
+            <input type="date" class="form-control" id="ngaybatdau" value="26/04/2018" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="ngayketthuc">Ngày kết thúc</label>
+            <input type="date" class="form-control" id="ngayketthuc" value="27/04/2018" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="noidungcongviec">Nội dung công việc</label>
+            <textarea class="form-control" id="noidungcongviec" rows="3" disabled="disabled">Tạo câu hỏi</textarea>
+          </div>
+          <h5 class="font-weight-bold">Chi tiết</h5>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <label for="c1c1">Chương 1</label>
+                <input type="text" class="form-control" id="c1c1" value="Chapter 1" disabled="disabled">
+              </div>
+              <div class="col">
+                <label for="c1s1">Số lượng câu hỏi</label>
+                <input type="text" class="form-control" id="c1s1" value="10" disabled="disabled">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <label for="c2c2">Chương 2</label>
+                <input type="text" class="form-control" id="c2c2" value="Chapter 2" disabled="disabled">
+              </div>
+              <div class="col">
+                <label for="c2s2">Số lượng câu hỏi</label>
+                <input type="text" class="form-control" id="c2s2" value="10" disabled="disabled">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-button data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

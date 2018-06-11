@@ -1,0 +1,53 @@
+<nav class="sidebar" id="sidebar-page">
+  <button class="close-sidebar m-2" mat-mini-fab color="warn" id="btn-closeSide" onclick="closeSide()">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="sidebar__header">
+    <img [src]="teacher?.avatar? 'https://drive.google.com/uc?id='+teacher?.avatar: url_avatar_default" class="rounded rounded-circle py-3"
+      alt="">
+    <h5 *ngIf="isLogin">
+      <a class="text-uppercase nameTeacher" href="">{{ teacher?teacher?.firstName: '...' }} {{ teacher?teacher?.lastName: '...' }}</a>
+    </h5>
+    <select id="select-role" class="form-control" #t (change)="showMenuItemByRole(t.value)">
+      <option value="default" selected>Hãy chọn chức vụ</option>
+      <option *ngFor="let itemRole of role" [value]="[itemRole.roleID]">{{ itemRole.roleName }}</option>
+    </select>
+  </div>
+  <div class="sidebar__body">
+    <ul class="list-unstyled components">
+      <li>
+        <a [routerLink]="['/']" data-toggle="tooltip" data-placement="right" title="Trang chủ">
+          <i class="fas fa-home"></i>&nbsp;
+          <span class="description-slide">Trang chủ</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/cap-nhat-thong-tin/' + teacher?.teacherId]" data-toggle="tooltip" data-placement="right" title="Cập nhật thông tin">
+          <i class="fas fa-user"></i>&nbsp;
+          <span class="description-slide">Cập nhật thông tin</span>
+        </a>
+      </li>
+
+    </ul>
+    <div class="sidebar-truong-khoa sidebar-box">
+      <ul class="list-unstyled components">
+        <li *ngFor="let key of getKeys(mapMenuRole)">
+          <a [routerLink]="key" data-toggle="tooltip" data-placement="right" title="{{ mapMenuRole.get(key)[1] }}">
+            <i [class]='[mapMenuRole.get(key)[0]]'></i>&nbsp;
+            <span class="description-slide">{{ mapMenuRole.get(key)[1] }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="sidebar__footer">
+    <a href="mailto:nguyenphatit.nl@gmail.com?Subject=Hello%20-%20Bank%20Exam">@EmailPhat</a>&nbsp;
+    <a href="tel:+84969037662">@TelPhat</a>&nbsp;
+    <br/>
+    <a href="mailto:vanthang20437@gmail.com?Subject=Hello%20-%20Bank%20Exam">@EmailThang</a>&nbsp;
+    <a href="tel:+841203847318">@TelThang</a>&nbsp;
+    <br/> Powered by TP - Bank Exam © 2010-2018
+    <br/> Version v0.1
+  </div>
+</nav>

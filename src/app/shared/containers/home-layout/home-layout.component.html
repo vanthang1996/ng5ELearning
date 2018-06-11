@@ -1,0 +1,10 @@
+<com-header></com-header>
+<div class="wrapper">
+  <com-slidebar></com-slidebar>
+  <div class="content" id="content-page">
+    <button class="open-sidebar m-2" mat-mini-fab color="warn" id="btn-openSide" onclick="openSide()"><i class="fas fa-bars"></i></button>
+    <!-- <app-chat></app-chat> -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-notify-center></app-notify-center>

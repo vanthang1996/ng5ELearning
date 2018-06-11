@@ -1,0 +1,154 @@
+<div class="container-fluid">
+  <h5 class="card-title font-weight-bold text-uppercase">Công việc</h5>
+  Khoa Công nghệ Thông tin
+  <mat-card class="my-3">
+    <div class="card-body">
+      <div class="form-group right">
+        <label>Loại công việc</label>
+        <select class="form-control" [(ngModel)]="selectedJobTypeId" (change)="loadData()">
+          <option value="0">Tất cả</option>
+          <option *ngFor="let jobType of jobTypes | async" [value]="jobType?.jobTypeId">{{jobType?.jobTypeName}}</option>
+        </select>
+      </div>
+      <div class="form-group  right">
+        <label>Trạng thái</label>
+        <select class="form-control" [(ngModel)]="selectJobStatus" (change)="loadData()">
+          <option value="0">Chưa hoàn thành</option>
+          <option value="1">Hoàn thành</option>
+        </select>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="text-center">
+            <tr>
+              <th scope="col">Môn học</th>
+              <th scope="col">Giảng viên</th>
+              <th scope="col">Loại công việc</th>
+              <th scope="col">Thời gian</th>
+              <th scope="col">Chi tiết công việc</th>
+              <th scope="col" *ngIf="selectJobStatus==0">Trạng thái công việc</th>
+              <th scope="col" *ngIf="selectJobStatus==0">Tiến độ công việc</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let job of jobs">
+              <td>{{job?.subject?.subjectName}}</td>
+              <td>img/{{job?.teacher?.lastName}}</td>
+              <td>{{job?.jobType?.jobTypeName}}</td>
+              <td>
+                <span class="badge badge-pill badge-success">{{job?.startTime | date:"dd/MMM/y"}}</span>
+                <i class="fas fa-arrow-right"></i>
+                <span class="badge badge-pill badge-danger">{{job?.endTime | date:"dd/MMM/y"}}</span>
+              </td>
+              <td>
+                <button mat-raised-button color="primary" (click)="jobDetail(job?.jobId)" data-toggle="modal" data-target=".xemchitiet-modal-lg">Chi tiết</button>
+              </td>
+              <td *ngIf="selectJobStatus==0">
+                <div class="form-group">
+                  <select class="form-control" [(ngModel)]="job.status">
+                    <option value="0">Chưa hoàn thành</option>
+                    <option value="1">Hoàn thành</option>
+                  </select>
+                </div>
+              </td>
+              <td *ngIf="selectJobStatus==0">
+                <div class="form-group">
+                  <select class="form-control" [(ngModel)]="job.subject.status">
+                    <option value="0">Chưa hoàn thành</option>
+                    <option value="1">Hoàn thành</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <nav *ngIf="page_show" aria-label="Page navigation example">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-1 col-xl-1 mb-2">
+            <div class="form-group">
+              <label for="limitPP">Hiển thị</label>
+              <select class="form-control" id="limitPerPage" [(ngModel)]="limit" (change)="limitPerPage($event.target.value)">
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 offset-lg-5 offset-xl-5">
+            <ul class="pagination justify-content-end">
+              <li *ngIf="(current_page > 1) && (numberOfPage>1)" class="page-item">
+                <a class="page-link" (click)=(movePage(current_page-1))>
+                  <!-- <i class="fas fa-angle-double-left"></i> -->&laquo;
+                </a>
+              </li>
+              <li *ngFor="let item of collectionPageIndex; let i = index" [class]="'page-item '+[(i+1)==current_page? 'text-danger active ': '' ]">
+                <a class="page-link" (click)=(movePage(i+1))>{{i+1}}</a>
+              </li>
+              <li *ngIf="(current_page < numberOfPage) && (numberOfPage > 1)" class="page-item">
+                <a class="page-link" (click)=(movePage(current_page+1))>
+                  <!-- <i class="fas fa-angle-double-right"></i> -->&raquo;
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </mat-card>
+</div>
+
+<div class="modal fade xemchitiet-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div *ngIf="jobContentDetail" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{jobContentDetail?.jobType?.jobTypeName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="tenmon">{{jobContentDetail?.subject?.subjectName}}</label>
+            <input type="text" class="form-control" id="tenmon" value="HTTTQL" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="ngaybatdau">Ngày bắt đầu</label>
+            <input type="text" class="form-control" id="ngaybatdau" [value]="jobContentDetail?.startTime | date: 'dd/MMM/y'" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="ngayketthuc">Ngày kết thúc</label>
+            <input type="text" class="form-control" id="ngayketthuc" [value]="jobContentDetail?.endTime | date: 'dd/MMM/y'" disabled="disabled">
+          </div>
+          <div class="form-group">
+            <label for="noidungcongviec">Nội dung công việc</label>
+            <textarea class="form-control" id="noidungcongviec" rows="3" disabled="disabled">Tạo câu hỏi</textarea>
+          </div>
+          <div *ngIf="isCreateQuestion" class="form-group">
+            <h5 class="font-weight-bold">Chi tiết</h5>
+            <div *ngFor="let createQuestion of questionDetail | async" class="form-row">
+              <div class="col">
+                <label for="c1c1">{{createQuestion?.chapter?.chapterName}}</label>
+                <input type="text" class="form-control" id="c1c1" [value]="createQuestion?.chapter?.describe" disabled="disabled">
+              </div>
+              <div class="col">
+                <label for="c1s1">Số lượng câu hỏi</label>
+                <input type="text" class="form-control" id="c1s1" [value]="createQuestion?.amount" disabled="disabled">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-raised-button data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

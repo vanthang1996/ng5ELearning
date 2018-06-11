@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <mat-card class="card card-content">
+    <div class="card-header">
+      <h5 class="card-title font-weight-bold text-uppercase">Phân công tạo cấu trúc</h5>
+    </div>
+    <div class="card-body">
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>Bộ môn phân công</ng-template>
+          <form>
+            <label class="font-weight-bold" for="bo-mon">Bộ môn</label>
+            <select class="form-control" id="bo-mon" name="bo-mon" required="required" #boMon (change)="changeDepartment(boMon.value)">
+              <option value="0">Chọn bộ môn</option>
+              <option *ngFor="let c of departments" [value]="c?.departmentId">{{ c?.departmentName }}</option>
+            </select>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <ng-template matStepLabel>Môn học phân công</ng-template>
+          <form>
+            <label class="font-weight-bold" for="mon-hoc">Môn học</label>
+            <select class="form-control" id="mon-hoc" #monHoc (change)="changeSubject(monHoc.value)">
+              <option value="0">Chọn môn học</option>
+              <option *ngFor="let subject of subjects" [value]="subject?.subjectId"> {{subject?.subjectName}}</option>
+            </select>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <ng-template matStepLabel>Giảng viên phân công</ng-template>
+          <form>
+            <label class="font-weight-bold" for="giang-vien">Giảng viên</label>
+            <select class="form-control" id="giang-vien" #teacher (change)="changeTeacher(teacher.value)">
+              <option value="0">Chọn giảng viên</option>
+              <option *ngFor="let teacher   of teachers" [value]="teacher?.teacherId"> {{teacher?.firstName + ' '+ teacher?.lastName}}</option>
+            </select>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup">
+          <ng-template matStepLabel>Nội dung phân công</ng-template>
+          <form>
+            <div class="form-group">
+              <label class="font-weight-bold" for="noi-dung-phan-cong">Nội dung công việc</label>
+              <textarea class="form-control" id="noi-dung-phan-cong" [(ngModel)]="jobContent" name="noi-dung-cong-viec" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="font-weight-bold" for="ket-thuc">Thời gian kết thúc</label>
+              <input type="date" id="ket-thuc" #due (change)="changeDue(due.value)" class="form-control" />
+            </div>
+            <div class="text-right">
+              <button type="button" [disabled]="submit" (click)="submitForm()" mat-raised-button color="primary">Xác nhận</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </mat-card>
+</div>

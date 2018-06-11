@@ -1,0 +1,168 @@
+<div class="container-fluid">
+  <mat-card class="card card-content">
+    <div class="card-header">
+      <h5 class="card-title font-weight-bold text-uppercase">Công việc tạo câu hỏi</h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="text-center">
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tên môn học</th>
+              <th scope="col">Thời gian phân công</th>
+              <th scope="col">Thời gian dự kiến hoàn thành</th>
+              <th scope="col">Loại công việc</th>
+              <th scope="col">Nội dung</th>
+              <th scope="col" colspan="2">Thực hiện</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <th scope="row">1</th>
+              <td>Hệ thống thông tin</td>
+              <td>26/04/2018</td>
+              <td>27/04/2018</td>
+              <td>Tạo câu hỏi</td>
+              <td>ABC</td>
+              <td colspan="2">
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Chi tiết
+                          <span class="badge badge-pill badge-danger">1</span>
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body text-left">
+                        <h5>Mạng máy tính cơ bản</h5>
+                        <h6>Tiêu đề chương 1</h6>
+                        <span>Chỉ tiêu: 1</span>
+                        <br>
+                        <span>Hoàn thành: 0</span>
+                        <span class="ml-3">
+                          <button mat-raised-button color="primary" data-toggle="modal" data-target="#modalRow">
+                            <i class="fas fa-plus-circle"></i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-right">
+        <button mat-raised-button color="primary">
+          Nộp bài
+        </button>
+      </p>
+    </div>
+  </mat-card>
+</div>
+
+<div class="modal fade" id="modalRow" tabindex="-1" role="dialog" aria-labelledby="modalRow" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tạo câu hỏi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form novalidate>
+          <div class="form-group">
+            <label for="noi-dung">Nôi dung</label>
+            <textarea class="form-control" id="noi-dung" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="muc-do">Mức độ</label>
+            <select class="form-control" id="muc-do">
+              <option>Khó</option>
+              <option>Dễ</option>
+            </select>
+          </div>
+
+          <p>
+            <button mat-raised-button color="primary" class="mr-2" type="button" data-toggle="collapse" data-target="#collapseTuLuan" aria-expanded="false"
+              aria-controls="collapseTuLuan">
+              Tự luận
+            </button>
+            <button mat-raised-button color="primary" type="button" data-toggle="collapse" data-target="#collapseTracNghiem" aria-expanded="false"
+              aria-controls="collapseTracNghiem">
+              Trắc nghiệm
+            </button>
+          </p>
+          <!-- tự luận -->
+          <div class="collapse" id="collapseTuLuan">
+            <div class="form-group">
+              <label for="dap-an">Đáp án</label>
+              <textarea class="form-control" id="dap-an" rows="3"></textarea>
+            </div>
+          </div>
+          <!-- trắc nghiệm -->
+          <div class="collapse" id="collapseTracNghiem">
+            <div class="form-group">
+              <label for="so-dap-an">Số lượng đáp án</label>
+              <select class="form-control" id="so-dap-an">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-raised-button data-dismiss="modal">Close</button>
+        <button type="button" mat-raised-button color="primary">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div *ngFor="let e of examTestModel">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-8 row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <label for="nameshool" class="col-sm-3 col-form-label text-right">Tên trường</label>
+            <div class="col-sm-9">
+              <input class="form-control" [(ngModel)]="nameshool" name="nameshool" id="nameshool">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <label for="semeter" class="col-sm-3 col-form-label text-right">Học kỳ</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" [(ngModel)]="semeter" name="semeter" id="semeter" min="0" max="100">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <label for="time" class="col-sm-3 col-form-label text-right">Thời gian thi</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="number" [(ngModel)]="e.timeDo" name="time" id="time" min="0" max="1000">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <label for="datetest" class="col-sm-3 col-form-label text-right">Ngày thi</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="date" [(ngModel)]="e.timeDay" name="datetest" id="datetest">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <label for="method" class="col-sm-3 col-form-label text-right">Hình thức</label>
+            <div class="col-sm-9">
+              <select name="method" id="method" [(ngModel)]="method" class="form-control">
+                <option value="Đề đóng (Không được phép dùng tài liệu)">Đề đóng</option>
+                <option value="Đề mở (Được phép dùng tài liệu)">Đề mở</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <label for="subject" class="col-sm-3 col-form-label text-right">Môn học</label>
+            <div class="col-sm-9">
+              <input class="form-control" [(ngModel)]="e.subject.subjectName" name="subject" id="subject">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="form-group row">
+          <label for="note" class="col-sm-3 col-form-label text-right">Ghi chú</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" [(ngModel)]="note" name="note" id="note" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-3 mr-5 text-right">
+      <button class="btn-print" mat-raised-button color="accent" (click)="print()">
+        <i class="fas fa-print fa-lg"></i> In đề thi
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <mat-card class="p-5" id="print-section">
+      <div style="display: flex; align-items: stretch;">
+        <div style="text-align: center; width: 50%; height: auto;">
+          <span style="text-transform: uppercase;">Bộ giáo dục và đào tạo</span>
+          <br/>
+          <span style="text-transform: uppercase;">{{nameshool}}</span>
+          <br/>
+          <span>---------------</span>
+        </div>
+        <div style="text-align: center; width: 50%; height: auto;">
+          <span style="text-transform: uppercase; font-weight: bold;">Cộng hoà xã hội chủ nghĩa Việt Nam</span>
+          <br/> Độc lập - Tự do - Hạnh phúc
+          <br/>
+          <span>---------------</span>
+        </div>
+      </div>
+      <br/>
+      <div style="text-align: center;">
+        <span style="text-transform: uppercase; font-size: 16px; font-weight: bold;">Đề thi môn {{e.subject.subjectName}} học kỳ {{semeter}}</span>
+        <br/>
+        <p>
+          Ngày thi: {{e.timeDay | date: "dd/MM/y" }}
+          <br/> Thời gian thi {{e.timeDo}} phút (Không kể thời gian phát đề)
+          <br/>
+          <i>{{method}}</i>
+        </p>
+      </div>
+      <div style="margin-top: 30px">
+
+        <div *ngFor="let detail of examTestDetailModel; let idetail = index" [attr.data-index]="idetail" style="margin-bottom: 10px">
+          <span>
+            <b>Câu hỏi {{idetail+1}}:</b>
+            {{detail?.question?.content}}
+          </span>
+          <br/>
+          <div *ngFor="let answer of detail.question.answers; let ianswer = index" [attr.data-index]="ianswer">
+            <span>
+              <b>{{(ianswer == 0) ? 'A' : (ianswer == 1) ? 'B' : (ianswer ==2) ? 'C' : 'D'}}.</b> {{answer.content}}</span>
+            <br/>
+          </div>
+        </div>
+
+      </div>
+      <div style="margin-top: 10px">
+        <p>
+          <i>{{method}}</i>
+          <br/>
+          <i>{{note}}</i>
+        </p>
+      </div>
+    </mat-card>
+  </div>
+</div>

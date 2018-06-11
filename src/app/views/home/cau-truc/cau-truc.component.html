@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <h5 class="card-title font-weight-bold text-uppercase">Cấu trúc đề thi - Hệ thống thông tin quản lý</h5>
+  Khoa Công nghệ Thông tin
+  <div class="mt-5">
+    <mat-card class="example-card">
+      <mat-card-content>
+        <table class="table">
+          <tbody class="text-center">
+            <tr>
+              <th>Tổng số câu</th>
+              <td>Tổng số điểm hiện tại</td>
+              <td>Số câu dễ</td>
+              <td>Số câu khó</td>
+            </tr>
+            <tr>
+              <th>{{numberOfQuestion}}</th>
+              <td>{{numberOfScore}}</td>
+              <td>{{numberOfQuestionEasy}}</td>
+              <td>{{numberOfQuestion - numberOfQuestionEasy}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="mt-5">
+    <mat-card>
+      <mat-card-content>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="text-center">
+              <tr>
+                <th scope="col">Chương</th>
+                <th scope="col">Mội dung</th>
+                <th scope="col">Độ khó</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Tổng điểm</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let strucTestDetail of strucTestDetails">
+                <td>{{strucTestDetail.chapter.chapterName}}</td>
+                <td>{{strucTestDetail.chapter.describe}}</td>
+                <td>{{strucTestDetail.level.levelName}}</td>
+                <td>{{strucTestDetail.numberOfQuestion}}</td>
+                <td>{{strucTestDetail.totalScore}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-5" *ngFor="let strucTestDetail of strucTestDetails">
+        <mat-card class="mat-card-sub">
+          <mat-card-header class="card-header">
+            <mat-card-title>
+              <h5>{{strucTestDetail.chapter.chapterName}}</h5>
+            </mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="img-card" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              {{strucTestDetail.chapter.describe}}
+            </p>
+            <span>Độ khó:
+              <b>{{strucTestDetail.level.levelName}}</b>
+            </span>
+            <br/>
+            <span>Số lượng:
+              <b>{{strucTestDetail.numberOfQuestion}}</b>
+            </span>
+            <br/>
+            <span>Tổng điểm:
+              <b>{{strucTestDetail.totalScore}}</b>
+            </span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

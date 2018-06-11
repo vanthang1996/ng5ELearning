@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <h5 class="card-title font-weight-bold text-uppercase">Danh sách câu hỏi</h5>
+  Khoa Công nghệ Thông tin
+  <div class="mt-5">
+
+    <mat-card *ngFor="let question of questions" class="mb-3">
+      <mat-card-header id="heading1">
+        <mat-card-title class="m-3">
+          <!-- <b>Câu 1:</b> -->{{question?.content}}
+        </mat-card-title>
+        <mat-card-subtitle class="m-3">
+          <button mat-raised-button color="primary" data-toggle="collapse" [attr.data-target]="['#collapse'+question?.questionId]"
+            aria-expanded="true" [attr.aria-controls]="['collapse'+question?.questionId]">
+            Đáp án
+          </button>
+          <span class="badge badge-pill {{question?.levelId===1?'badge-danger':'badge-warning'}} pt-2 pb-2 pr-3 pl-3 ml-2">{{question?.level?.levelName}}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <div [attr.id]="['collapse'+question?.questionId]" class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+        <div class="card-body">
+          <form class="was-validated">
+            <div *ngFor="let answer of question?.answers" class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="q1a2" required disabled [checked]="answer?.correctAnswer">
+              <label class="custom-control-label" for="q1a2">{{answer?.content}}</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card>
+    <nav *ngIf="page_show" aria-label="Page navigation example">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-1 col-xl-1 mb-2">
+          <div class="form-group">
+            <label for="limitPP">Hiển thị</label>
+            <select class="form-control" id="limitPerPage" ngModel (change)="limitPerPage($event.target.value)">
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 offset-lg-5 offset-xl-5">
+          <ul class="pagination justify-content-end">
+            <li *ngIf="(current_page > 1) && (numberOfPage>1)" class="page-item">
+              <a class="page-link" (click)=(movePage(current_page-1))>
+                <!-- <i class="fas fa-angle-double-left"></i> -->&laquo;
+              </a>
+            </li>
+            <li *ngFor="let item of collection_page; let i = index" [class]="'page-item '+[(i+1)==current_page? 'text-danger active ': '' ]">
+              <a class="page-link" (click)=(movePage(i+1))>{{i+1}}</a>
+            </li>
+            <li *ngIf="(current_page < numberOfPage) && (numberOfPage > 1)" class="page-item">
+              <a class="page-link" (click)=(movePage(current_page+1))>
+                <!-- <i class="fas fa-angle-double-right"></i> -->&raquo;
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>

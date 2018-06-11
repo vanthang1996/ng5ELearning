@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <h5 class="font-weight-bold">Danh sách giảng viên</h5>
+  Khoa Công nghệ thông tin
+  <div class="text-right">
+    <button mat-fab color="accent" data-toggle="modal" data-target="#modal-them-giang-vien">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-5" *ngFor="let t of subjectModel?.teachers">
+        <mat-card class="mat-card-sub">
+          <mat-card-header class="card-header">
+            <mat-card-title>
+              <h5>{{t?.firstName}} {{t?.lastName}}</h5>
+            </mat-card-title>
+          </mat-card-header>
+          <img class="card-img-top" [src]="t?.avatar" class="img-card" alt="Card image cap">
+          <mat-card-content class="card-body">
+            <span>Email:
+              <b>{{t?.email}}</b>
+            </span>
+            <br/>
+            <span>Số điện thoại:
+              <b>{{t?.phoneNumber}}</b>
+            </span>
+            <br/>
+            <span>Sinh nhật:
+              <b>{{t?.birthDay | date:'dd/MM/y'}}</b>
+            </span>
+          </mat-card-content>
+          <mat-card-actions class="p-3">
+            <button href="#" mat-raised-button color="warn" (click)="deleteTeacherOfSubject(subjectModel?.subjectId, subjectModel?.teacherManagementId)">Xóa</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-them-giang-vien" tabindex="-1" role="dialog" aria-labelledby="them-giang-vien" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="them-giang-vien">Thêm giảng viên giảng dạy</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-5" *ngFor="let d of teacherModel">
+            <mat-card class="mat-card-sub">
+              <mat-card-header class="card-header">
+                <mat-card-title>
+                  <h5>{{d?.firstName}} {{d?.lastName}}</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <img class="card-img-top" [src]="d?.avatar" class="img-card" alt="Card image cap">
+              <mat-card-content class="card-body">
+                <span>Email:
+                  <b>{{d?.email}}</b>
+                </span>
+              </mat-card-content>
+              <mat-card-actions class="p-3">
+                <button href="#" mat-raised-button color="primary" (click)="addTeacherIntoSubject(subjectModel, d?.teacherId)">Thêm</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-button data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

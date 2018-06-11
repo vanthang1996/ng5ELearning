@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Bạn có muốn xoá?</h1>
+<div mat-dialog-content>
+  <p>{{ data.chapterName }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="warn" (click)="removeChapter(data.chapterId, data.subjectId)">Ok</button>
+</div>

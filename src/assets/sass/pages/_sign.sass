@@ -1,0 +1,63 @@
+.sign-content
+	background: $blue-color url('../images/da-lat.jpg')
+	min-height: 100vh
+	height: 100%
+	background-position: center
+	background-repeat: no-repeat
+	background-size: cover
+	.sign-text
+		.card-sign
+			.card-body
+				.navbar-brand
+					font:
+						weight: bold
+						size: 3rem
+					color: $blue-color
+					cursor: pointer
+					-webkit-transition: .5s
+					transition: .5s
+					&:hover
+						color: $blue-color
+
+@media screen and (min-width: 1200px)
+	.sign-content
+		.sign-text
+			padding: 20rem 0 20rem 0
+			.card-sign
+
+@media (max-width: 1199px) and (min-width: 992px)
+	.sign-content
+
+		.sign-text
+			padding: 10rem 0 10rem 0
+			.card-sign
+				.card-body
+					.navbar-brand
+						font:
+							size: 2rem
+
+@media (max-width: 991px) and (min-width: 768px)
+	.sign-content
+		.sign-text
+			padding: 10rem 0 10rem 0
+			.card-sign
+				.card-body
+					.navbar-brand
+						font:
+							size: 2rem
+
+@media (max-width: 767px) and (min-width: 576px)
+	.sign-content
+		.sign-text
+			padding: 5rem 0 5rem 0
+			.card-sign
+
+@media (max-width: 575px)
+	.sign-content
+		.sign-text
+			padding: 5rem 0 5rem 0
+			.card-sign
+				.card-body
+					.navbar-brand
+						font:
+							size: 2rem

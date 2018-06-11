@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <h5 class="font-weight-bold">Cập nhật thông tin cá nhân</h5>
+
+  <div class="mt-5">
+    <mat-card class="p-3">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 col-left">
+            <div class="form-group">
+              <label for="first-name" class="font-weight-bold">Tên</label>
+              <input type="text" class="form-control" id="first-name" ngModel name="firstName" placeholder="Nhập họ và tên lót" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name" class="font-weight-bold">Họ và tên đệm</label>
+              <input type="text" class="form-control" id="last-name" ngModel name="lastName" placeholder="Nhập Tên" required>
+            </div>
+            <div class="form-group">
+              <label for="sex" class="font-weight-bold">Giới tính</label>
+              <select name="sex" id="sex" ngModel class="form-control">
+                <option value="false">Nam</option>
+                <option value="true">Nữ</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="birthday" class="font-weight-bold">Ngày sinh</label>
+              <input type="date" class="form-control" id="birthday" ngModel name="birthDay" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group">
+              <label for="email" class="font-weight-bold">Email</label>
+              <input type="email" class="form-control" id="email" ngModel name="email" placeholder="Nhập địa chỉ email" required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="font-weight-bold">Mật khẩu</label>
+              <input type="password" class="form-control" id="password" minlength="8" ngModel name="password" placeholder="Nhập mật khẩu"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="font-weight-bold">Số điện thoại</label>
+              <input type="tel" class="form-control" id="phone" min="0" maxlength="12" ngModel name="phoneNumber" placeholder="Nhập số điện thoại">
+            </div>
+            <div class="form-group">
+              <label for="address" class="font-weight-bold">Địa chỉ</label>
+              <textarea class="form-control" id="address" rows="3" ngModel name="address" placeholder="Nhập địa chỉ liên hệ"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="department" class="font-weight-bold">Bộ môn</label>
+              <select class="form-control" id="department" ngModel name="department">
+                <option *ngFor="let d of departmentModel" [value]="d?.departmentId">{{d?.departmentName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-right upload-avatar text-center">
+            <div class="card">
+              <img [src]="url_avatar" alt="Ảnh đại diện" class="img-thumbnail avatar-img">
+              <div class="card-body">
+                <app-change-avatar (eventUp)="onUploadAvartar($event)"></app-change-avatar>
+              </div>
+            </div>
+          </div>
+        </div>
+        <mat-card-actions class="text-right p-3 mr-3">
+          <button type="submit" mat-raised-button color="primary">Xác nhận</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>

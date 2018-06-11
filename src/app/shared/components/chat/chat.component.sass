@@ -1,0 +1,115 @@
+.content-out-chat
+  position: relative
+
+a[aria-expanded="true"]::before, a[aria-expanded="false"]::before
+  content: ''
+
+@media screen and (min-width: 510px)
+  .showsm
+    display: none
+
+  .chatlist-sm
+    display: none
+
+  .chatlist
+    display: block
+    max-width: 250px
+    min-width: 250px
+    z-index: 1
+    position: fixed
+    right: 0
+    bottom: 0
+    .chatlist-header
+      background-color: #3f51b5
+      a
+        color: #fff
+        text-decoration: none
+    .chatlist-body
+      max-height: 400px
+      min-height: 0
+      overflow: auto
+      padding: 0
+      background-color: #fafafa
+
+      .list-body
+        .item-chatlist
+          cursor: pointer
+  .chat-box
+    max-width: 250px
+    min-width: 250px
+    position: fixed
+    right: 260px
+    bottom: 0
+    border: 1px solid #cecece
+    .chatlist-header
+      background-color: #3f51b5
+      a
+        color: #fff
+        text-decoration: none
+    .chatbox-body
+      max-height: 250px
+      min-height: 0
+      overflow: auto
+      padding: 0
+      background-color: #fafafa
+      border: 0
+      .chat-content
+        min-height: 200px
+        border-bottom: 1px solid #cecece
+        .your-chat
+          left: 0
+          text-align: left
+          margin: 5px 43px 5px 5px
+          .your-content
+            min-width: 0px
+            max-width: 200px
+            background-color: #cecece
+            padding: 5px
+            border-top-right-radius: 20px
+            border-bottom-right-radius: 20px
+            border-bottom-left-radius: 20px
+        .my-chat
+          right: 0
+          max-width: 200px
+          margin: 5px 5px 5px 43px
+          text-align: right
+          .my-content
+            color: #fff
+            background-color: #3f51b5
+            padding: 5px
+            border-top-left-radius: 20px
+            border-bottom-right-radius: 20px
+            border-bottom-left-radius: 20px
+    .chatbox-footer
+      background-color: #fafafa
+      .form-send
+        display: inline-block
+        width: 95%
+        border: 1px solid #3f51b5
+        border-radius: 20px
+        margin: 5px 6px 3px 6px
+        .input-send
+          float: left
+          width: 87%
+          input[type="text"]
+            margin-left: 5px
+            width: 100%
+            border: none
+            outline: none
+        .btn-send
+          float: left
+          width: 10%
+          button
+            border: none
+            background: none
+            outline: none
+            cursor: pointer
+            color: #3f51b5
+
+
+@media (max-width: 509px)
+  .chatlist
+    display: none
+  .chat-box
+    display: none
+

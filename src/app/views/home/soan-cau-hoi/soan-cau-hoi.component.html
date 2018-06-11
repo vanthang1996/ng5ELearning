@@ -1,0 +1,216 @@
+<div class="container-fluid">
+  <mat-card class="card card-content">
+    <div class="card-header">
+      <h5 class="card-title font-weight-bold text-uppercase">Soạn câu hỏi</h5>
+    </div>
+    <div class="card-body">
+      <div class="m-3">
+        <div class="form-group">
+          <label for="mon-hoc">Môn học</label>
+          <select class="form-control" id="mon-hoc" #monHoc (change)="changeSubject(monHoc.value)">
+            <option value="0">Chọn môn học</option>
+            <option *ngFor="let subject of subjects" [value]="subject?.subjectId">{{subject?.subjectName}}</option>
+          </select>
+        </div>
+        <p *ngIf="subjectId && subjectId !=0 " class="text-right">
+          <button mat-fab color="accent" data-toggle="modal" data-target="#modalRow">
+            <i class="fas fa-plus"></i>
+          </button>
+        </p>
+        <h5>Tổng số câu: {{numberOfRecord || 0}}</h5>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="text-center">
+              <tr>
+                <th scope="col">Mã câu hỏi</th>
+                <th scope="col">Nội dung</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Chương</th>
+                <th scope="col">Tổng số đáp án</th>
+                <th scope="col">Xóa</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let question of questions">
+                <td>{{question?.questionId}}</td>
+                <td>
+                  <a href="#" data-toggle="modal" class="text" (click)="editQuestion(question?.questionId)" data-target="#editModal">{{question?.content}}</a>
+                </td>
+                <td>{{question?.status?"Đã xét":"Biên soạn"}} </td>
+                <td>{{question?.chapter?.chapterName}}</td>
+                <td>{{question?.answers?.length}}</td>
+                <td>
+                  <a href="javascript:void(0)" (click)="deleteQuestion(question?.questionId)">
+                    <i class="fa fa-trash-alt"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nav *ngIf="page_show" aria-label="Page navigation example">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-1 col-xl-1 mb-2">
+              <div class="form-group">
+                <label for="limitPP">Hiển thị</label>
+                <select class="form-control" id="limitPerPage" [(ngModel)]="limit" (change)="limitPerPage($event.target.value)">
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 offset-lg-5 offset-xl-5">
+              <ul class="pagination justify-content-end">
+                <li *ngIf="(current_page > 1) && (numberOfPage>1)" class="page-item">
+                  <a class="page-link" (click)=(movePage(current_page-1))>
+                    <!-- <i class="fas fa-angle-double-left"></i> -->&laquo;
+                  </a>
+                </li>
+                <li *ngFor="let item of collectionPageShow" [class]="'page-item '+[item==current_page? 'text-danger active ': '' ]">
+                  <!-- <a *ngIf="numberShowPage(i+1,current_page,collectionPageIndex.length)" class="page-link" (click)=(movePage(i+1))>{{i+1}}</a> -->
+                  <a class="page-link" (click)=(movePage(item))>{{item}}</a>
+                </li>
+                <li *ngIf="(current_page < numberOfPage) && (numberOfPage > 1)" class="page-item">
+                  <a class="page-link" (click)=(movePage(current_page+1))>
+                    <!-- <i class="fas fa-angle-double-right"></i> -->&raquo;
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <p class="text-right">
+        <button mat-raised-button color="primary">
+          Nộp bài
+        </button>
+      </p>
+    </div>
+  </mat-card>
+</div>
+<!-- form edit-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalTitle">Chỉnh sửa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="questionEdit">
+          <div class="form-group">
+            <label for="enoi-dung">Nôi dung</label>
+            <textarea class="form-control" id="enoi-dung" rows="3" [(ngModel)]="questionEdit.content" [name]="'question-content'+questionEdit.questionId"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="emuc-do">Mức độ</label>
+            <select class="form-control" id="emuc-do" name="muc-do-edit" [(ngModel)]="questionEdit.levelId">
+              <option value="1">Khó</option>
+              <option value="2">Dễ</option>
+            </select>
+          </div>
+          <div id="collapseTracNghiem">
+            <div *ngFor=" let answer of questionEdit?.answers; let i = index;">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <input type="checkbox" [name]="'correct-answer-edit'+ i" [(ngModel)]="answer.correctAnswer">
+                  </div>
+                </div>
+                <input type="text" class="form-control" [name]="'dap-an-edit' + i" [(ngModel)]="answer.content">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-raised-button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" mat-raised-button color="primary" (click)="updateQuestion()"  data-dismiss="modal" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalRow" tabindex="-1" role="dialog" aria-labelledby="modalRow" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tạo câu hỏi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="muc-do">Chương</label>
+            <select *ngIf="selectedSubject" [(ngModel)]="question.chapterId" class="form-control" id="chuong" name="chuong">
+              <option value="0">Chọn chương</option>
+              <option *ngFor="let chapter of selectedSubject?.chapters" [value]="chapter?.chapterId">{{chapter?.chapterName + ': ' + chapter?.describe }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="noi-dung">Nôi dung</label>
+            <textarea class="form-control" id="noi-dung" rows="3" [(ngModel)]="question.content" name="question-content"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="muc-do">Mức độ</label>
+            <select class="form-control" id="muc-do" [(ngModel)]="question.levelId" name="muc-do">
+              <option value="1">Khó</option>
+              <option value="2">Dễ</option>
+            </select>
+          </div>
+          <p>
+            <button mat-raised-button color="primary" class="mr-2" type="button" (click)="openTL()">
+              Tự luận
+            </button>
+            <button mat-raised-button color="primary" type="button" (click)="openTN()">
+              Trắc nghiệm
+            </button>
+          </p>
+
+          <!-- tự luận -->
+          <div class="" id="collapseTuLuan" [hidden]="isTL">
+            <div class="form-group">
+              <label for="dap-an">Đáp án</label>
+              <textarea class="form-control" id="dap-an" rows="3" name="dap-an-tl" [(ngModel)]="contentAnswerTl"></textarea>
+            </div>
+          </div>
+          <!-- trắc nghiệm -->
+          <div class="" id="collapseTracNghiem" [hidden]="isTN">
+            <div class="form-group">
+              <label for="so-dap-an">Số lượng đáp án</label>
+              <select class="form-control" id="so-dap-an" (change)="numberQuestion(select.value)" #select>
+                <option value="0">Chọn đáp án</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <div *ngFor="let answer of numAnswer; let i = index;">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <input type="checkbox" [(ngModel)]="answer.correctAnswer" [name]="'correct-answer-'+ i">
+                  </div>
+                </div>
+                <input type="text" [(ngModel)]="answer.content" [name]="'content'+ i" class="form-control">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-raised-button data-dismiss="modal" (click)="clearModal()">Close</button>
+        <button type="button" (click)="addQuestion()" data-dismiss="modal" mat-raised-button color="primary">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
