@@ -1,10 +1,10 @@
-<nav class="sidebar" id="sidebar-page">
-  <button class="close-sidebar m-2" mat-mini-fab color="warn" id="btn-closeSide" onclick="closeSide()">
+<nav class="sidebar" id="sidebar-page" #sidebarpage>
+  <button class="close-sidebar m-2" mat-mini-fab color="warn" id="btn-closeSide" #btnCloseSide onclick="closeSide()">
     <i class="fas fa-times"></i>
   </button>
   <div class="sidebar__header">
-    <img [src]="teacher?.avatar? 'https://drive.google.com/uc?id='+teacher?.avatar: url_avatar_default" class="rounded rounded-circle py-3"
-      alt="">
+    <img [src]="teacher?.avatar? teacher?.avatar : url_avatar_default" class="rounded rounded-circle py-3"
+      alt="ảnh đại diện">
     <h5 *ngIf="isLogin">
       <a class="text-uppercase nameTeacher" href="">{{ teacher?teacher?.firstName: '...' }} {{ teacher?teacher?.lastName: '...' }}</a>
     </h5>

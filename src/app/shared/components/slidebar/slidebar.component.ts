@@ -21,6 +21,7 @@ export class SlidebarComponent implements OnInit {
   public role: Array<Role> = new Array();
   public isLogin = true;
   public mapMenuRole: Map<string, Array<string>> = new Map(); // key la url, value la ten menu
+
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
@@ -86,4 +87,6 @@ export class SlidebarComponent implements OnInit {
   getKeys(map) {
     return Array.from(map.keys());
   }
+
+
 }

@@ -22,4 +22,11 @@ export class DepartmentService {
       teacherManagementId: department.teacherManagementId
     });
   }
+
+  getDepartmentById(departmentId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/department/${departmentId}`).pipe(map(
+      (data: any) => data = data ? data : []
+    ));
+  }
+
 }

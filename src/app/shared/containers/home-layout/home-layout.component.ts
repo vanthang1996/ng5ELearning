@@ -7,6 +7,11 @@ import { Router } from '@angular/router';
 })
 
 export class HomeLayoutComponent implements OnInit {
+  showMenu = false;
+
+  openSide() {
+    this.showMenu = true;
+  }
   constructor() {
 
   }
