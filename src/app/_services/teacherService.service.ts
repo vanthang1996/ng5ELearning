@@ -70,4 +70,19 @@ export class TeacherService {
         (data: any) => data = data ? data : []
       ));
     }
+
+    updateTeacher(teacher: Teacher): Observable<any> {
+      return this.http.post(this.config.url_port + `/teacher/update`, {
+        teacherId: teacher.teacherId,
+        firstName: teacher.firstName,
+        lastName: teacher.lastName,
+        birthDay: teacher.birthDay,
+        email: teacher.email,
+        avatar: teacher.avatar,
+        address: teacher.address,
+        phoneNumber: teacher.phoneNumber,
+        sex: teacher.sex,
+        departmentId: teacher.departmentId
+      });
+    }
 }

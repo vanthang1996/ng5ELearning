@@ -13,12 +13,13 @@ $(document).ready(function(){
 });
 
 function openSide() {
-	// $('#sidebar-page').css("display", "block");
-	$('#sidebar-page').slideDown( "slow" );
+	$('#sidebar-page').css("display", "block");
+	// $('#sidebar-page').slideDown( "slow" );
 	$('#btn-openSide').css("display", "none");
 }
 
 function closeSide() {
-	$('#sidebar-page').slideUp();
+  // $('#sidebar-page').slideUp();
+  $('#sidebar-page').css("display", "none");
 	$('#btn-openSide').css("display", "block");
 }
