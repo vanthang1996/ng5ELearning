@@ -50,7 +50,7 @@
               </td>
               <td *ngIf="selectJobStatus==0">
                 <div class="form-group">
-                  <select class="form-control" [(ngModel)]="job.status">
+                  <select class="form-control" [(ngModel)]="job.status" (change)="reviewJob(job?.jobId)">
                     <option value="0">Chưa hoàn thành</option>
                     <option value="1">Hoàn thành</option>
                   </select>
@@ -58,7 +58,7 @@
               </td>
               <td *ngIf="selectJobStatus==0">
                 <div *ngIf="job?.jobTypeId!=2" class="form-group">
-                  <select class="form-control" [(ngModel)]="job.subject.status">
+                  <select disabled class="form-control" [(ngModel)]="job.subject.status">
                     <option value="0">Chưa hoàn thành</option>
                     <option value="1">Hoàn thành</option>
                   </select>

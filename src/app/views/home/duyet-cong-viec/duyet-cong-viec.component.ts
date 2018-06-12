@@ -1,3 +1,5 @@
+import { stat } from 'fs';
+import { NotifyCenterService } from './../../../_services/notify-center.service';
 import { Job } from './../../../_models/job';
 import { JobService } from './../../../_services/job.service';
 import { Component, OnInit } from '@angular/core';
@@ -34,7 +36,7 @@ export class DuyetCongViecComponent implements OnInit {
     this.loadData();
     this.page_show = true;
   }
-  constructor(private jobService: JobService) { }
+  constructor(private jobService: JobService, private notifyCenterService: NotifyCenterService) { }
 
   ngOnInit() {
     this.jobTypes = this.jobService.getALLJobType();
@@ -58,5 +60,11 @@ export class DuyetCongViecComponent implements OnInit {
       this.questionDetail = this.jobService.getJobQuestionDetail(jobId);
       this.isCreateQuestion = true;
     }
+  }
+  reviewJob(jobId: number) {
+    jobId = +jobId;
+    this.jobService.reviewJobByJobId(jobId).subscribe((data) => {
+      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!' , status: null, details: null });
+    });
   }
 }

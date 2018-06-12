@@ -1,3 +1,4 @@
+import { stat } from 'fs';
 import { Subject } from './../_models/subject';
 import { map } from 'rxjs/operators';
 import { ConfigValue } from './../_helpers/config-value';
@@ -7,7 +8,12 @@ import { Chapter } from '../_models';
 import { Observable } from 'rxjs/observable';
 @Injectable()
 export class SubjectService {
-
+/*
+  status [0,1]
+*/
+  submitSubject(subjectId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/subject/${subjectId}/submit-subject`);
+  }
   constructor(private http: HttpClient, private config: ConfigValue) {
   }
 
@@ -18,6 +24,9 @@ export class SubjectService {
   }
   getSubjectBySubjectId(subjectId: number): Observable<Subject> {
     return this.http.get(this.config.url_port + `/subject/${subjectId}`).pipe(map((data: any) => data = data ? data : []));
+  }
+  getSubjectBySubjectIdAllStatus(subjectId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/subject/${subjectId}/all-status`).pipe(map((data: any) => data = data ? data : []));
   }
   getSubjectsAddOutLine(departmentId: number): Observable<any> {
     return this.http.get(this.config.url_port + `/subject/${departmentId}/add-out-line/subjects`).pipe(

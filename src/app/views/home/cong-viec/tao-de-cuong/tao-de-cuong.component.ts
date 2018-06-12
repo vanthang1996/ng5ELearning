@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, Output, Input , EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject, Output, Input, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotifyCenterService } from '../../../../_services/notify-center.service';
 import { SubjectService } from '../../../../_services/subjectService.service';
 import { NgForm } from '@angular/forms';
@@ -24,7 +24,8 @@ export class TaoDeCuongComponent implements OnInit {
     private route: ActivatedRoute,
     private notifyCenterService: NotifyCenterService,
     private subjectService: SubjectService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -49,6 +50,12 @@ export class TaoDeCuongComponent implements OnInit {
       this.loadData();
     });
   }
+  submitOutLine() {
+    this.subjectService.submitSubject(this.subjectId).subscribe((data: any) => {
+      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: 200, details: null });
+      this.router.navigate(['/cong-viec']);
+    });
+  }
 
   openDialog(chapterId: number, chapterName: string, subjectId: number): void {
     let dialogRef;
@@ -60,7 +67,7 @@ export class TaoDeCuongComponent implements OnInit {
 
     dialogRef.componentInstance.remove.subscribe(($e) => {
       console.log($e);
-       this.loadData();
+      this.loadData();
     });
   }
 }
@@ -87,7 +94,7 @@ export class DialogComponent {
   removeChapter(chapterId: number, subjectId: number) {
     this.chapterService.deleteChapterByChapterId(subjectId, chapterId).subscribe((data: any) => {
       this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: null, details: null });
-        this.remove.emit('xoa');
+      this.remove.emit('xoa');
     });
     this.dialogRef.close();
   }
