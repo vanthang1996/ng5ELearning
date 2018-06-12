@@ -33,24 +33,42 @@
   </div>
 </div> -->
 
-<a class="nav-link" href="#" id="navbarNotify" mat-raised-button color="primary" data-toggle="dropdown" aria-haspopup="true"
+<!-- <a class="nav-link" href="#" id="navbarNotify" (click)="loadData()" mat-raised-button color="primary" data-toggle="dropdown" aria-haspopup="true"
   aria-expanded="false">
   <i class="fas fa-comment"></i> Thông báo
 </a>
 <div class="dropdown-menu ddnotify" aria-labelledby="navbarNotify">
-  <ul *ngIf="listNotify" class="list-unstyled">
-    <li *ngFor="let notify of listNotify | async" class="media">
-      <img class="mr-3" src="assets/images/cyberpop-zoe.jpg" alt="Generic placeholder image">
+  <ul class="list-unstyled">
+    <li *ngFor="let notify of listNotify" class="media">
+      <img class="mr-3" [src]="notify?.teacherReceive?.avatar" alt="Generic placeholder image">
       <div class="media-body">
-        <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis
-        in faucibus.
+        <h5 class="mt-0 mb-1 font-weight-bold">{{notify?.title}}</h5>
+       {{notify?.body}}
       </div>
     </li>
-
     <li>
-      <a href="javaScript:void(0)" (click)="showMore()" class="text-center">Xem thêm</a>
+      <button (click)="showMore()" class="text-center" type="button">Xem thêm</button>
     </li>
+  </ul>
+</div> -->
+
+<a class="nav-link" style="cursor: pointer;" mat-raised-button color="primary" (click)="reload()">
+  <i *ngIf="numberOfNotifyMessage==0" class="fas fa-comment"></i>
+  <span *ngIf="numberOfNotifyMessage!=0" class="badge badge-pill badge-danger">{{numberOfNotifyMessage}}</span>
+  Thông báo
+</a>
+
+<div class="ddnotify shadow-sm bg-white" *ngIf="showNotify">
+  <ul class="list-unstyled">
+    <li *ngFor="let notify of listNotify" class="media">
+      <img class="mr-3" [src]="notify?.teacherReceive?.avatar" width="100px" alt="Generic placeholder image">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1 font-weight-bold">{{notify?.teacherSend?.firstName + ' '+ notify?.teacherSend?.lastName}}: {{notify?.title}}</h5>
+        {{notify?.body}}
+      </div>
+    </li>
+    <div class="text-center my-2">
+      <button (click)="showMore()" class="text-center" mat-button type="button">Xem thêm</button>
+    </div>
   </ul>
 </div>
