@@ -13,10 +13,9 @@ import { QuestionService } from '../../../_services/questionService.service';
 export class DuyetCauHoiComponent implements OnInit {
   panelOpenState = false;
   teacherModel: any;
-  teacher: any;
-  teacherId: number;
   jobModel: any;
   jobId: number;
+  jobParam: any;
   createQuestionModel: any;
   questionModel: any;
   message: string;
@@ -32,39 +31,40 @@ export class DuyetCauHoiComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.teacher = this.route.params.subscribe(params => {
-      this.teacherId = +params['teacherId'];
-      this.getTeacherByTeacherId();
-      this.getJobByTeacherId();
-      this.getCreateQuestionByJobId();
+    this.jobParam = this.route.params.subscribe(params => {
+      this.jobId = +params['jobId'];
+      // this.getTeacherByTeacherId();
+      // this.getJobByTeacherId();
+      // thi s.getCreateQuestionByJobId();
     });
   }
 
-  getTeacherByTeacherId() {
-    this.teacherService.getTeacherByTeacherIdNoCollection(this.teacherId).subscribe((data: any) => {
-      this.teacherModel = data;
-    });
-  }
+  // getTeacherByTeacherId() {
+  //   this.teacherService.getTeacherByTeacherIdNoCollection(this.teacherId).subscribe((data: any) => {
+  //     this.teacherModel = data;
+  //   });
+  // }
 
-  getJobByTeacherId() {
-    this.jobService.geJobByTeacherIdAndJobType(this.teacherId).subscribe((data: any) => {
-      this.jobModel = data;
-      this.jobId = this.jobModel.jobId;
-      if (this.jobId > 0) {
-        this.checkJob = true;
-        this.createQuestionService.getCreateQuestionByJobId(this.jobId).subscribe((dataCQ: any) => {
-          this.createQuestionModel = dataCQ;
-        });
-      } else {
-        this.checkJob = false;
-        this.message = 'Người này không có công việc phân công!';
-      }
-    });
-  }
+  // getJobByTeacherId() {
+  //   this.jobService.geJobByTeacherIdAndJobType(this.teacherId).subscribe((data: any) => {
+  //     this.jobModel = data;
+  //     this.jobId = this.jobModel.jobId;
+  //     console.log(data);
+  //     if (this.jobId > 0) {
+  //       this.checkJob = true;
+  //       this.createQuestionService.getCreateQuestionByJobId(this.jobId).subscribe((dataCQ: any) => {
+  //         this.createQuestionModel = dataCQ;
+  //       });
+  //     } else {
+  //       this.checkJob = false;
+  //       this.message = 'Người này không có công việc phân công!';
+  //     }
+  //   });
+  // }
 
-  getCreateQuestionByJobId() {
-    this.questionService.getQuestionByTeacherId(this.teacherId).subscribe((data: any) => {
-      this.questionModel = data;
-    });
-  }
+  // getCreateQuestionByJobId() {
+  //   this.questionService.getQuestionByTeacherId(this.teacherId).subscribe((data: any) => {
+  //     this.questionModel = data;
+  //   });
+  // }
 }

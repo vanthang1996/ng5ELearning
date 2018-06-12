@@ -63,7 +63,7 @@
                     <option value="1">Hoàn thành</option>
                   </select>
                 </div>
-                <button *ngIf="job?.jobTypeId==2" mat-raised-button color="primary" [routerLink]="[]"  data-toggle="modal" data-target=".xemchitiet-modal-lg">Xem</button>
+                <button *ngIf="job?.jobTypeId==2" mat-raised-button color="primary" [routerLink]="['/duyet-cau-hoi/' + job?.jobId]"  >Xem</button>
               </td>
             </tr>
           </tbody>

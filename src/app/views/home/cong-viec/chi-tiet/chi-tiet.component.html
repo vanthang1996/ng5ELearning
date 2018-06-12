@@ -17,7 +17,7 @@
           </thead>
           <tbody class="text-center">
             <tr *ngFor="let job of jobs">
-              <td>{{job?.subject?.subjectName || 'Tên môn học'}}</td>
+              <td>{{job?.subject?.subjectName || 'Tên môn học'}} </td>
               <td>{{job?.jobType?.jobTypeName}}</td>
               <td>
                 <span class="badge badge-pill badge-success">{{job?.startTime | date:"dd/MMM/y"}}</span>
