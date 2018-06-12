@@ -76,6 +76,7 @@ export class SubjectService {
       (data: any) => data = data ? data : []
     ));
   }
+
   getSubjectInfoBySubjectId(subjectId: number): Observable<Subject> {
     return this.http.get(this.config.url_port + `/subject/${subjectId}/info`).pipe(map((data: any) => data = data ? data : []));
   }

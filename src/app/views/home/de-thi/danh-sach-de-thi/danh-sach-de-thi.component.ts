@@ -3,6 +3,7 @@ import { ExamTestService } from '../../../../_services/examtest.service';
 import { ActivatedRoute } from '@angular/router';
 import { DepartmentService } from '../../../../_services/department.service';
 import { ExamTest } from '../../../../_models/examtest';
+import { SubjectService } from '../../../../_services/subjectService.service';
 
 @Component({
   templateUrl: 'danh-sach-de-thi.component.html'
@@ -10,26 +11,26 @@ import { ExamTest } from '../../../../_models/examtest';
 
 export class DanhSachDeThiComponent implements OnInit {
   subjectId: number;
+  subjectParam: any;
   subjectModel: any;
-  examTestModel: ExamTest = new ExamTest;
 
   constructor(
     private route: ActivatedRoute,
-    private examTestService: ExamTestService
+    private examTestService: ExamTestService,
+    private subjectService: SubjectService
   ) { }
 
   ngOnInit() {
-    this.subjectModel = this.route.params.subscribe(params => {
+    this.subjectParam = this.route.params.subscribe(params => {
       this.subjectId = +params['subjectId'];
-      console.log(this.subjectId);
       this.loadData();
     });
   }
 
   loadData() {
-    this.examTestService.getExamTestBySubjectId(this.subjectId).subscribe((data: any) => {
-      this.examTestModel = data;
-      console.log(this.examTestModel);
+    this.subjectService.getSubjectInfoBySubjectId(this.subjectId).subscribe((data: any) => {
+      this.subjectModel = data;
+      // console.log(this.subjectModel);
     });
   }
 }
