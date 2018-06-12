@@ -60,7 +60,6 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.authenticationService.login(this.loginFormGroup.value.email, this.loginFormGroup.value.password)
         .subscribe(data => {
-          this.springSocketService.connect();
           this.loading = false;
           if (this.loginFormGroup.value.rememberMe) {
             localStorage.setItem(this.config.remember, btoa(JSON.stringify(this.loginFormGroup.value)));

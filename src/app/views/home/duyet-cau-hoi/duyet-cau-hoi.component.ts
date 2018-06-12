@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../_services/teacherService.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/observable';
 import { ActivatedRoute } from '@angular/router';
 import { JobService } from '../../../_services/job.service';
 import { CreateQuestionService } from '../../../_services/createQuestion.service';

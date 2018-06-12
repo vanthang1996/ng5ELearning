@@ -1,3 +1,4 @@
+import { SpringSocketService } from './spring-socket.service';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
@@ -12,7 +13,8 @@ export class AuthenticationService {
 
   public token: string;
 
-  constructor(private http: HttpClient, private config: ConfigValue) {
+  constructor(private http: HttpClient, private config: ConfigValue
+    , private springSocketService: SpringSocketService) {
     // kiểm tra có lưu trong local storage
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
@@ -30,6 +32,7 @@ export class AuthenticationService {
           this.config.token,
           JSON.stringify(teacher.token)
         );
+        this.springSocketService.connect();
       }
       return teacher;
     }));
@@ -72,6 +75,7 @@ export class AuthenticationService {
 
   logout(): void {
     // xóa khỏi local storage
+    this.springSocketService.closeConnection();
     this.token = null;
     localStorage.removeItem('currentUser');
   }

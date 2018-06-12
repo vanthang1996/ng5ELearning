@@ -38,7 +38,6 @@ export class SlidebarComponent implements OnInit {
   getName(): void {
     this.http.get(this.config.url_port + '/teacher/info').subscribe((teacher: any) => {
       this.teacher = teacher;
-      console.log(this.teacher);
     });
   }
 
