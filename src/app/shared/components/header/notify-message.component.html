@@ -61,7 +61,7 @@
 <div class="ddnotify shadow-sm bg-white" *ngIf="showNotify">
   <ul class="list-unstyled">
     <li *ngFor="let notify of listNotify" class="media">
-      <img class="mr-3" [src]="notify?.teacherReceive?.avatar" width="100px" alt="Generic placeholder image">
+      <img class="mr-3" [src]="notify?.teacherSend?.avatar" width="100px" alt="Generic placeholder image">
       <div class="media-body">
         <h5 class="mt-0 mb-1 font-weight-bold">{{notify?.teacherSend?.firstName + ' '+ notify?.teacherSend?.lastName}}: {{notify?.title}}</h5>
         {{notify?.body}}

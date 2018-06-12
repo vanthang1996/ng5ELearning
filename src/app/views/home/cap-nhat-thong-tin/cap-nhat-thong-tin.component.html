@@ -29,7 +29,7 @@
               <label for="birthday" class="font-weight-bold">Ngày sinh</label>
               <input type="date" class="form-control" id="birthday" [ngModel]="birthDay | date:'yyyy-MM-dd'" name="birthDay" placeholder="dd/mm/yyyy">
             </div>
-            <div class="form-group">
+            <div class="form-group "  style="display: none;">
               <label for="email" class="font-weight-bold">Email</label>
               <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" placeholder="Nhập địa chỉ email" required>
             </div>
