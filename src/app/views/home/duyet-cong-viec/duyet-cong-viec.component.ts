@@ -64,7 +64,9 @@ export class DuyetCongViecComponent implements OnInit {
   reviewJob(jobId: number) {
     jobId = +jobId;
     this.jobService.reviewJobByJobId(jobId).subscribe((data) => {
-      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!' , status: null, details: null });
+      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: null, details: null });
+      this.current_page = 1;
+      this.loadData();
     });
   }
 }

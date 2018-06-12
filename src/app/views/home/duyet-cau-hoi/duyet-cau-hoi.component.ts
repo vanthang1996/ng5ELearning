@@ -1,7 +1,8 @@
+import { NotifyCenterService } from './../../../_services/notify-center.service';
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../_services/teacherService.service';
 import { Observable } from 'rxjs/observable';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JobService } from '../../../_services/job.service';
 import { CreateQuestionService } from '../../../_services/createQuestion.service';
 import { QuestionService } from '../../../_services/questionService.service';
@@ -25,7 +26,9 @@ export class DuyetCauHoiComponent implements OnInit {
     private teacherService: TeacherService,
     private createQuestionService: CreateQuestionService,
     private questionService: QuestionService,
-    private jobService: JobService
+    private jobService: JobService,
+    private notifyCenterService: NotifyCenterService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,7 +38,12 @@ export class DuyetCauHoiComponent implements OnInit {
       this.getJobByTeacherId();
     });
   }
-
+  reviewJobQuestion() {
+    this.jobService.reviewJobByJobId(this.jobId).subscribe((data: any) => {
+      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: null, details: null });
+      this.router.navigate(['/duyet-cong-viec']);
+    });
+  }
   getJob() {
     this.jobService.geJobByJobId(this.jobId).subscribe((data: any) => {
       this.jobModel = data;

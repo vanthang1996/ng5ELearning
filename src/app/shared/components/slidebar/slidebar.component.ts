@@ -46,7 +46,7 @@ export class SlidebarComponent implements OnInit {
   addMenuForTk(): void {
     this.mapMenuRole.clear();
     this.mapMenuRole.set('/bo-mon/danh-sach-bo-mon', Array('fas fa-archive', 'Bộ môn'));
-    this.mapMenuRole.set('/chi-tiet-cong-viec', Array('fas fa-briefcase', 'Công việc'));
+    // this.mapMenuRole.set('/chi-tiet-cong-viec', Array('fas fa-briefcase', 'Công việc'));
     this.mapMenuRole.set('/phan-cong-day', Array('fab fa-leanpub', 'Phân công dạy'));
     this.mapMenuRole.set('/them-giang-vien', Array('fas fa-plus', 'Thêm giảng viên'));
     this.mapMenuRole.set('/them-bo-mon', Array('fas fa-plus', 'Thêm bộ môn'));

@@ -80,12 +80,12 @@
             </table>
           </div>
         </mat-card>
-        <div class="text-right py-3" *ngIf="checkJob">
+        <div class="text-right py-3" >
           <button mat-raised-button color="warn">
-            <i class="fas fa-times"></i> Không chấp nhận
+            <i class="fas fa-times"></i> Y/C cập nhật
           </button>
-          <button class="ml-2" mat-raised-button color="primary">
-            <i class="fas fa-save"></i> Không chấp nhận
+          <button class="ml-2" mat-raised-button color="primary" (click)="reviewJobQuestion()">
+            <i class="fas fa-save"></i> Xác nhận
           </button>
         </div>
       </div>
