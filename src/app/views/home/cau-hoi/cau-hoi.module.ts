@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CauHoiRoutingModule } from './cau-hoi-routing.module';
@@ -9,7 +10,9 @@ import { MaterialModule } from '../../../material.module';
   imports: [
     CommonModule,
     CauHoiRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [],
   declarations: [

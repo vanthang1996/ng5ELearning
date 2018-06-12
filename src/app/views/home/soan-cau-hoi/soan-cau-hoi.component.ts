@@ -69,15 +69,18 @@ export class SoanCauHoiComponent implements OnInit {
     const start = Math.ceil(this.number_showPape / 2);
     const end = max_numberOfPage - (start - 1);
     return (current_page >= start && end >= current_page && Math.abs(current_page - index) < start)
-      || (current_page < start && (index <= this.number_showPape))
-      || (current_page > end && (index > max_numberOfPage - this.number_showPape));
-
+    || (current_page < start && (index <= this.number_showPape))
+    || (current_page > end && (index > max_numberOfPage - this.number_showPape));
   } */
+  numberQuestion(number: number) {
+    this.numAnswer = Array(+number).fill(0).map((item, index) => new Answer());
+  }
 
 
   constructor(private teacherService: TeacherService
     , private questionService: QuestionService
-    , private notifyCenterService: NotifyCenterService) { }
+    , private notifyCenterService: NotifyCenterService
+    , private jobservice: JobService) { }
 
   ngOnInit() {
     this.teacherService.getSubjectOfTeacher().subscribe((data: any) => {
@@ -97,16 +100,12 @@ export class SoanCauHoiComponent implements OnInit {
     this.isTN = false;
     this.numberQuestion(0);
   }
-  numberQuestion(number: number) {
-    this.numAnswer = Array(+number).fill(0).map((item, index) => new Answer());
-  }
   changeSubject(subjectId: number) {
     this.subjectId = +subjectId;
     this.selectedSubject = this.subjects.find(subject => subject.subjectId === this.subjectId);
     console.log(this.selectedSubject);
     this.loadData();
   }
-
   loadData() {
     this.question.chapterId = 0;
     this.question.levelId = 1;
@@ -133,6 +132,7 @@ export class SoanCauHoiComponent implements OnInit {
       console.log('Dữ liệu:', data);
       this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: null, details: null });
       this.clearModal();
+      this.loadData();
     });
   }
   clearModal() {
