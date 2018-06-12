@@ -19,7 +19,7 @@ export class BoMonPhanCongComponent implements OnInit {
   loadDepartment() {
     this.departmentService.getAllDepartment().subscribe((data: any) => {
       this.departmentModel = data;
-      console.log(this.departmentModel);
+      // console.log(this.departmentModel);
     });
   }
 }

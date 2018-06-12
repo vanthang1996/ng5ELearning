@@ -20,4 +20,10 @@ export class ExamTestService {
       (data: any) => data = data ? data : []
     ));
   }
+
+  getExamByStrucId(strucTestId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/create-exam/getExam/${strucTestId}`).pipe(map(
+      (data: any) => data = data ? data : []
+    ));
+  }
 }

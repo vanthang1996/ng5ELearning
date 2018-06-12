@@ -1,33 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectService } from '../../../../_services/subjectService.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DepartmentService } from '../../../../_services/department.service';
 
 @Component({
   templateUrl: 'mon-hoc.component.html'
 })
 
 export class MonHocComponent implements OnInit {
-  subject: any;
+  subjectModel: any;
+  departmentParam: any;
   departmentId: number;
-  department: any;
+  departmentModel: any;
 
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
     private subjectService: SubjectService,
-    private route: ActivatedRoute
+    private departmentService: DepartmentService
   ) { }
 
   ngOnInit() {
-    this.department = this.route.params.subscribe(params => {
+    this.departmentParam = this.route.params.subscribe(params => {
       this.departmentId = +params['departmentId'];
-      this.loadData();
+      this.loadDepartment();
+      this.loadSubject();
     });
   }
 
-  loadData() {
-    this.subjectService.getSubjectsDataByDepartmentId(this.departmentId).subscribe((data: any) => {
-      this.subject = data;
-      console.log(this.subject);
+  loadSubject() {
+    this.subjectService.getSubjectsByDepartmentId(this.departmentId).subscribe((data: any) => {
+      this.subjectModel = data;
+      // console.log(this.subjectModel);
+    });
+  }
+
+  loadDepartment() {
+    this.departmentService.getDepartmentById(this.departmentId).subscribe((data: any) => {
+      this.departmentModel = data;
     });
   }
 }

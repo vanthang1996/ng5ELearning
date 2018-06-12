@@ -1,4 +1,4 @@
-<div *ngFor="let e of examTestModel">
+<div>
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 row">
@@ -22,7 +22,7 @@
           <div class="form-group row">
             <label for="time" class="col-sm-3 col-form-label text-right">Thời gian thi</label>
             <div class="col-sm-9">
-              <input class="form-control" type="number" [(ngModel)]="e.timeDo" name="time" id="time" min="0" max="1000">
+              <input class="form-control" type="number" [(ngModel)]="examTestModel.timeDo" name="time" id="time" min="0" max="1000">
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="form-group row">
             <label for="datetest" class="col-sm-3 col-form-label text-right">Ngày thi</label>
             <div class="col-sm-9">
-              <input class="form-control" type="date" [(ngModel)]="e.timeDay" name="datetest" id="datetest">
+              <input class="form-control" type="date" [(ngModel)]="examTestModel.testDay" name="datetest" id="datetest">
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <div class="form-group row">
             <label for="subject" class="col-sm-3 col-form-label text-right">Môn học</label>
             <div class="col-sm-9">
-              <input class="form-control" [(ngModel)]="e.subject.subjectName" name="subject" id="subject">
+              <input class="form-control" [(ngModel)]="subjectModel.subjectName" name="subject" id="subject">
             </div>
           </div>
         </div>
@@ -89,24 +89,24 @@
       </div>
       <br/>
       <div style="text-align: center;">
-        <span style="text-transform: uppercase; font-size: 16px; font-weight: bold;">Đề thi môn {{e.subject.subjectName}} học kỳ {{semeter}}</span>
+        <span style="text-transform: uppercase; font-size: 16px; font-weight: bold;">Đề thi học kỳ {{semeter}} môn {{subjectModel.subjectName}}</span>
         <br/>
         <p>
-          Ngày thi: {{e.timeDay | date: "dd/MM/y" }}
-          <br/> Thời gian thi {{e.timeDo}} phút (Không kể thời gian phát đề)
+          Ngày thi: {{examTestModel.testDay | date: "dd/MM/y" }}
+          <br/> Thời gian thi {{examTestModel.timeDo}} phút (Không kể thời gian phát đề)
           <br/>
           <i>{{method}}</i>
         </p>
       </div>
       <div style="margin-top: 30px">
 
-        <div *ngFor="let detail of examTestDetailModel; let idetail = index" [attr.data-index]="idetail" style="margin-bottom: 10px">
+        <div *ngFor="let questions of examTestDetailModel; let idetail = index" [attr.data-index]="idetail" style="margin-bottom: 10px">
           <span>
             <b>Câu hỏi {{idetail+1}}:</b>
-            {{detail?.question?.content}}
+            {{questions?.question?.content}}
           </span>
           <br/>
-          <div *ngFor="let answer of detail.question.answers; let ianswer = index" [attr.data-index]="ianswer">
+          <div *ngFor="let answer of questions.question.answers; let ianswer = index" [attr.data-index]="ianswer">
             <span>
               <b>{{(ianswer == 0) ? 'A' : (ianswer == 1) ? 'B' : (ianswer ==2) ? 'C' : 'D'}}.</b> {{answer.content}}</span>
             <br/>
