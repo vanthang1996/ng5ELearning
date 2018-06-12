@@ -49,13 +49,10 @@
           </div>
           <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-right upload-avatar text-center">
             <div class="card">
-              <img [src]="url_avatar? url_avatar:  url_avatar_default" alt="Ảnh đại diện" class="img-thumbnail avatar-img">
+              <img [src]="url_avatar ? url_avatar : url_avatar_default" alt="Ảnh đại diện" class="img-thumbnail avatar-img">
               <div class="card-body">
                 <app-change-avatar (eventUp)="onUploadAvartar($event)"></app-change-avatar>
               </div>
-            </div>
-            <div class="my-3">
-              <button mat-raised-button color="primary" [routerLink]="['/doi-mat-khau']">Đổi mật khẩu</button>
             </div>
           </div>
         </div>

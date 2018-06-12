@@ -6,6 +6,7 @@ import { Teacher, Department } from '../../../_models';
 import { TeacherService } from '../../../_services/teacherService.service';
 import { DepartmentService } from '../../../_services/department.service';
 import { NotifyCenterService } from '../../../_services/notify-center.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'cap-nhat-thong-tin.component.html'
@@ -35,7 +36,8 @@ export class CapNhatThongTinComponent implements OnInit {
     private config: ConfigValue,
     private teacherService: TeacherService,
     private departmentService: DepartmentService,
-    private notifyCenterService: NotifyCenterService
+    private notifyCenterService: NotifyCenterService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -59,7 +61,7 @@ export class CapNhatThongTinComponent implements OnInit {
         this.departmentId = data.departmentId;
         this.departmentService.getDepartmentById(this.departmentId).subscribe((dpm: any) => {
           this.department = dpm;
-          // console.log(this.department);
+          console.log(this.department);
         });
       });
     });
@@ -89,5 +91,7 @@ export class CapNhatThongTinComponent implements OnInit {
       this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: 200, details: null });
     this.getData();
     });
+    this.router.navigate(['/']);
+    location.reload();
   }
 }

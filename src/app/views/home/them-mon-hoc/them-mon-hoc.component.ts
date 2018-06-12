@@ -14,6 +14,7 @@ export class ThemMonHocComponent implements OnInit {
   teacherModel: any;
   departmentModel: any;
   subject: Subject = new Subject();
+  message = '';
 
   constructor(
     private teacherService: TeacherService,
@@ -42,6 +43,7 @@ export class ThemMonHocComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
+    // console.log(f.value);
     this.subject.subjectName = f.value.subjectName;
     this.subject.departmentId = f.value.department;
     this.subject.teacherManagementId = f.value.teacherManagement;
