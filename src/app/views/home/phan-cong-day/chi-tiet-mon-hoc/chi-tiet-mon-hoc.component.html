@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h5 class="font-weight-bold">Danh sách giảng viên</h5>
+  <h5 class="font-weight-bold">Danh sách giảng viên: {{subjectModel?.subjectName}}</h5>
   Khoa Công nghệ thông tin
   <div class="text-right">
     <button mat-fab color="accent" data-toggle="modal" data-target="#modal-them-giang-vien">
@@ -30,7 +30,7 @@
             </span>
           </mat-card-content>
           <mat-card-actions class="p-3">
-            <button href="#" mat-raised-button color="warn" (click)="deleteTeacherOfSubject(subjectModel?.subjectId, subjectModel?.teacherManagementId)">Xóa</button>
+            <button href="#" mat-raised-button color="warn" (click)="deleteTeacherToSubject(t?.teacherId, subjectModel?.subjectId)">Xóa</button>
           </mat-card-actions>
         </mat-card>
       </div>
@@ -49,21 +49,21 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-5" *ngFor="let d of teacherModel">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-5" *ngFor="let x of teacherModel">
             <mat-card class="mat-card-sub">
               <mat-card-header class="card-header">
                 <mat-card-title>
-                  <h5>{{d?.firstName}} {{d?.lastName}}</h5>
+                  <h5>{{x?.firstName}} {{x?.lastName}}</h5>
                 </mat-card-title>
               </mat-card-header>
-              <img class="card-img-top" [src]="d?.avatar" class="img-card" alt="Card image cap">
+              <img class="card-img-top" [src]="x?.avatar" class="img-card" alt="Card image cap">
               <mat-card-content class="card-body">
                 <span>Email:
-                  <b>{{d?.email}}</b>
+                  <b>{{x?.email}}</b>
                 </span>
               </mat-card-content>
               <mat-card-actions class="p-3">
-                <button href="#" mat-raised-button color="primary" (click)="addTeacherIntoSubject(subjectModel, d?.teacherId)">Thêm</button>
+                <button href="#" mat-raised-button color="primary" (click)="addTeacherToSubject(x?.teacherId, subjectModel?.subjectId)">Thêm</button>
               </mat-card-actions>
             </mat-card>
           </div>

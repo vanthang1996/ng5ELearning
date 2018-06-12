@@ -20,12 +20,14 @@ export class MonHocComponent implements OnInit {
   ngOnInit() {
     this.department = this.route.params.subscribe(params => {
       this.departmentId = +params['departmentId'];
+      this.loadData();
     });
   }
 
   loadData() {
     this.subjectService.getSubjectsDataByDepartmentId(this.departmentId).subscribe((data: any) => {
       this.subject = data;
+      console.log(this.subject);
     });
   }
 }

@@ -50,8 +50,8 @@ export class JobService {
     return this.http.get(this.config.url_port + `/job/teacher`);
   }
 
-  geJobByTeacherIdAndJobType(teacherId: number): Observable<any> {
-    return this.http.get(this.config.url_port + `/job/teacher/${teacherId}`).pipe(map(
+  geJobByJobId(jobId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/job/${jobId}`).pipe(map(
       (data: any) => data = data ? data : []
     ));
   }

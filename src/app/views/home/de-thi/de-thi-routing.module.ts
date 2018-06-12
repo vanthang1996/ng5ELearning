@@ -12,10 +12,10 @@ const routes: Routes = [
     path: '',
     component: BoMonComponent
   }, {
-    path: ':departmentId',
+    path: 'bo-mon/:departmentId',
     component: MonHocComponent
   }, {
-    path: 'danh-sach/:subjectId',
+    path: 'mon-hoc/:subjectId',
     component: DanhSachDeThiComponent
   }, {
     path: 'tao-de-thi',
