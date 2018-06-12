@@ -28,7 +28,7 @@
                 <button mat-raised-button color="primary" (click)="jobDetail(job?.jobId)" data-toggle="modal" data-target=".xemchitiet-modal-lg">Chi tiết</button>
               </td>
               <td>
-                <button mat-raised-button color="primary"
+                <button mat-raised-button color="primary" *ngIf="show(job)"
                   [routerLink]="[((job?.jobTypeId == 1) ? '/cong-viec/de-cuong/' : (job?.jobTypeId == 2) ? '/cong-viec/cau-hoi/' : '/cong-viec/cau-truc/') + job?.subject?.subjectId]">
                   Tiến hành
                 </button>

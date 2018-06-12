@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StrucTestDetail } from '../../../../_models';
 import { StructureTestDetailService } from '../../../../_services/structureTestDetailService.service';
 import { NotifyCenterService } from '../../../../_services/notify-center.service';
@@ -32,7 +32,8 @@ export class TaoCauTrucComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private structureTestDetailService: StructureTestDetailService,
-    private notifyCenterService: NotifyCenterService) { }
+    private notifyCenterService: NotifyCenterService
+    , private router: Router) { }
 
   ngOnInit() {
     //  this.addStructureModel  = new  StrucTestDetail();
@@ -44,7 +45,8 @@ export class TaoCauTrucComponent implements OnInit {
 
   loadData(): void {
     this.numberDifficultyQuestion = this.numberEasyQuestion = this.totalScore = 0;
-    this.structureTestDetailService.getListStrucBySubjectId(this.subjectId).subscribe(data => {
+    this.structureTestDetailService.showStrucDetailStatusZero(this.subjectId).subscribe(data => {
+      console.log(data);
       this.structureTestDetail = data;
 
       if (this.structureTestDetail) { this.strucTestId = this.structureTestDetail[0].structureTestId; }
@@ -56,6 +58,13 @@ export class TaoCauTrucComponent implements OnInit {
         this.numberEasyQuestion += element1.numberOfQuestion;
         this.totalScore += element1.totalScore;
       });
+    });
+  }
+  submitStrucTest() {
+    this.structureTestDetailService.updateStatusStrucZero(this.subjectId).subscribe((data: any) => {
+      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: 200, details: null });
+      this.router.navigate(['/cong-viec']);
+
     });
   }
 

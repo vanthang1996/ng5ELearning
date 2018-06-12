@@ -1,8 +1,8 @@
+import { Job } from './../../../../_models/job';
 import { JobService } from './../../../../_services/job.service';
 import { Teacher } from './../../../../_models/teacher';
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../../_services/teacherService.service';
-import { Job } from '../../../../_models';
 
 @Component({
   templateUrl: 'chi-tiet.component.html'
@@ -56,6 +56,16 @@ export class ChiTietComponent implements OnInit {
     if (this.jobContentDetail.jobTypeId === 2) {
       this.questionDetail = this.jobService.getJobQuestionDetail(jobId);
       this.isCreateQuestion = true;
+    }
+  }
+  show(job: Job): boolean {
+    switch (job.jobTypeId) {
+      case 1: // tao de cuong
+        return job.subject.status === 0;
+      case 2: // tao cau hoi
+        return true;
+      case 3: // tao ctdt
+        return job.strucTest.status === 0;
     }
   }
 }

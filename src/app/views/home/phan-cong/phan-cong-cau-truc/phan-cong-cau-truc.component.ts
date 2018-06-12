@@ -73,8 +73,9 @@ export class PhanCongCauTrucComponent implements OnInit, OnDestroy {
   changeSubject(subjectId: number) {
     subjectId = +subjectId;
     this.selectedSubject = this.subjects.find(subject => subject.subjectId === subjectId);
-    this.subjectService.getSubjectBySubjectId(subjectId).subscribe((data: Subject) => {
+    this.subjectService.getSubjectBySubjectIdAllStatus(subjectId).subscribe((data: Subject) => {
       this.teachers = data.teachers;
+      console.log(data);
     });
     this.selectedTeacher = undefined;
   }

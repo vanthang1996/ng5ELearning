@@ -1,3 +1,4 @@
+import { StrucTestDetail } from './strucTestDetail';
 import { Teacher } from './teacher';
 import { Subject } from './subject';
 export class Job {
@@ -12,4 +13,5 @@ export class Job {
     endTime: Date;
     jobContent;
     status: number;
+    strucTest: any;
 }
