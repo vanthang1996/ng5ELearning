@@ -65,7 +65,7 @@ const routes: Routes = [
     path: 'duyet-cau-hoi/:teacherId',
     component: DuyetCauHoiComponent
   }, {
-    path: 'cap-nhat-thong-tin/:teacherId',
+    path: 'cap-nhat-thong-tin',
     component: CapNhatThongTinComponent
   }, {
     path: '**',
