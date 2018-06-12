@@ -26,7 +26,7 @@ export class CapNhatThongTinComponent implements OnInit {
   departmentId: number;
   department: Department;
   teacherModel: Teacher;
-  url_avatar: string;
+  // url_avatar: string;
   url_avatar_default = 'https://drive.google.com/uc?id=1eYDVkxYb6PkrRaMiR-hATtFBhE7I3f5M';
   submitted = false;
   userform: FormGroup;
@@ -73,8 +73,8 @@ export class CapNhatThongTinComponent implements OnInit {
       const data = JSON.parse(response);
       const auth = JSON.parse(data[0].fileProperties);
       console.log(auth.webContentLink);
-      this.url_avatar = auth.webContentLink;
-      console.log(this.url_avatar);
+      this.avatar = auth.webContentLink;
+      console.log(this.avatar);
       this.submitted = false;
     }
     if (event.submitted) {
@@ -85,13 +85,12 @@ export class CapNhatThongTinComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     this.teacherModel = f.value;
-    this.teacherModel.avatar = (this.url_avatar) ? this.url_avatar : this.url_avatar_default;
+    this.teacherModel.avatar = (this.avatar) ? this.avatar : this.url_avatar_default;
     // console.log(this.teacherModel);
     this.teacherService.updateTeacher(this.teacherModel).subscribe((data: any) => {
       this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: 200, details: null });
     this.getData();
     });
     this.router.navigate(['/']);
-    location.reload();
   }
 }
