@@ -10,7 +10,7 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="card-body">
-          <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
             <div class="form-group">
               <label class="font-weight-bold" for="tenmon">Tên môn</label>
               <input type="text" class="form-control" ngModel name="subjectName" id="tenmon" placeholder="Nhập tên môn học">
