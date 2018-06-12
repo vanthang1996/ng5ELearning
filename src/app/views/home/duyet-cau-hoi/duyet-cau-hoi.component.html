@@ -10,35 +10,31 @@
               <b>Giảng viên</b>
             </mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="img-card" alt="Photo of a Shiba Inu">
+          <img mat-card-image [src]="jobModel?.teacher?.avatar" class="img-card" alt="Photo of a Shiba Inu">
           <mat-card-content class="card-body">
             <h5 class="text-uppercase">
-              <b>{{teacherModel?.firstName}} {{teacherModel?.lastName}}</b>
+              <b>{{jobModel?.teacher?.firstName}} {{jobModel?.teacher?.lastName}}</b>
             </h5>
             <br/>
             <span>
               <i class="fas fa-envelope"></i>&nbsp;
-              <b>{{teacherModel?.email}}</b>
+              <b>{{jobModel?.teacher?.email}}</b>
             </span>
             <br/>
             <span>
               <i class="fas fa-mobile-alt"></i>&nbsp;
-              <b>{{teacherModel?.phoneNumber}}</b>
+              <b>{{jobModel?.teacher?.phoneNumber}}</b>
             </span>
             <br/>
             <span>
               <i class="fas fa-birthday-cake"></i>&nbsp;
-              <b>{{teacherModel?.birthDay | date:"dd/MM/y"}}</b>
+              <b>{{jobModel?.teacher?.birthDay | date:"dd/MM/y"}}</b>
             </span>
           </mat-card-content>
-          <!-- <mat-card-actions class="p-3">
-            <button mat-raised-button color="primary" data-toggle="modal" data-target=".xemchitiet-modal-lg">Chi tiết</button>
-          </mat-card-actions> -->
         </mat-card>
       </div>
       <div class="col-sm-12 col-md-6 col-lg-9 mb-5">
-        <h4 class="text-danger" *ngIf="!checkJob">{{message}}</h4>
-        <mat-card class="my-3" *ngIf="checkJob">
+        <mat-card class="my-3">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <tbody>
@@ -60,13 +56,13 @@
                 </tr>
                 <tr>
                   <td scope="col">Trạng thái:</td>
-                  <td>{{jobModel?.status}}</td>
+                  <td>{{(jobModel?.status == 0) ? 'Chưa hoàn thành' : 'Hoàn thành'}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </mat-card>
-        <mat-card *ngIf="checkJob">
+        <mat-card>
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
@@ -95,7 +91,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="checkJob">
+  <div>
     <h3>Danh sách câu hỏi</h3>
     <mat-accordion>
       <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let q of questionModel; let i = index" [attr.data-index]="i">

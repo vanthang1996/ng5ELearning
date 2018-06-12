@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'bo-mon/:departmentId',
     component: MonHocPhanCongComponent
   }, {
-    path: ':departmentId/mon-hoc/:subjectId',
+    path: 'mon-hoc/:subjectId',
     component: ChiTietMonHocComponent
   }, {
     path: '**',

@@ -86,4 +86,17 @@ export class TeacherService {
       });
     }
 
+    getTeacherInDepartmentNotInSubject(departmentId: number, subjectId: number): Observable<any> {
+      return this.http.get(this.config.url_port + `/teacher/department/${departmentId}/not-in-subject/${subjectId}`).pipe(map(
+        (data: any) => data = data ? data : []
+      ));
+    }
+
+    insertQLMH(teacherId: number, subjectId: number): Observable<any> {
+      return this.http.get(this.config.url_port + `/teacher/add-teacher/${teacherId}/subject/${subjectId}`);
+    }
+
+    deleteQLMH(teacherId: number, subjectId: number): Observable<any> {
+      return this.http.get(this.config.url_port + `/teacher/delete-teacher/${teacherId}/subject/${subjectId}`);
+    }
 }

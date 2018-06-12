@@ -14,4 +14,10 @@ export class ExamTestService {
       (data: any) =>  data = data ? data : []
     ));
   }
+
+  getExamTestBySubjectId(subjectId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/exam-test/subject/${subjectId}`).pipe(map(
+      (data: any) => data = data ? data : []
+    ));
+  }
 }

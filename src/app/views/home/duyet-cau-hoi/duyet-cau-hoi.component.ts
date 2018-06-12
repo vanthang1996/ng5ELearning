@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JobService } from '../../../_services/job.service';
 import { CreateQuestionService } from '../../../_services/createQuestion.service';
 import { QuestionService } from '../../../_services/questionService.service';
+import { locateHostElement } from '@angular/core/src/render3/instructions';
 
 @Component({
   templateUrl: 'duyet-cau-hoi.component.html'
@@ -12,15 +13,12 @@ import { QuestionService } from '../../../_services/questionService.service';
 
 export class DuyetCauHoiComponent implements OnInit {
   panelOpenState = false;
-  teacherModel: any;
   jobModel: any;
   jobId: number;
   jobParam: any;
+  message: string;
   createQuestionModel: any;
   questionModel: any;
-  message: string;
-  checkJob = false;
-  answerSmall = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,38 +31,24 @@ export class DuyetCauHoiComponent implements OnInit {
   ngOnInit() {
     this.jobParam = this.route.params.subscribe(params => {
       this.jobId = +params['jobId'];
-      // this.getTeacherByTeacherId();
-      // this.getJobByTeacherId();
-      // thi s.getCreateQuestionByJobId();
+      this.getJob();
+      this.getJobByTeacherId();
     });
   }
 
-  // getTeacherByTeacherId() {
-  //   this.teacherService.getTeacherByTeacherIdNoCollection(this.teacherId).subscribe((data: any) => {
-  //     this.teacherModel = data;
-  //   });
-  // }
+  getJob() {
+    this.jobService.geJobByJobId(this.jobId).subscribe((data: any) => {
+      this.jobModel = data;
+      console.log(this.jobModel);
+      this.questionService.getQuestionByTeacherId(this.jobModel.teacher.teacherId).subscribe((dataq: any) => {
+        this.questionModel = dataq;
+      });
+    });
+  }
 
-  // getJobByTeacherId() {
-  //   this.jobService.geJobByTeacherIdAndJobType(this.teacherId).subscribe((data: any) => {
-  //     this.jobModel = data;
-  //     this.jobId = this.jobModel.jobId;
-  //     console.log(data);
-  //     if (this.jobId > 0) {
-  //       this.checkJob = true;
-  //       this.createQuestionService.getCreateQuestionByJobId(this.jobId).subscribe((dataCQ: any) => {
-  //         this.createQuestionModel = dataCQ;
-  //       });
-  //     } else {
-  //       this.checkJob = false;
-  //       this.message = 'Người này không có công việc phân công!';
-  //     }
-  //   });
-  // }
-
-  // getCreateQuestionByJobId() {
-  //   this.questionService.getQuestionByTeacherId(this.teacherId).subscribe((data: any) => {
-  //     this.questionModel = data;
-  //   });
-  // }
+  getJobByTeacherId() {
+    this.createQuestionService.getCreateQuestionByJobId(this.jobId).subscribe((data: any) => {
+      this.createQuestionModel = data;
+    });
+  }
 }

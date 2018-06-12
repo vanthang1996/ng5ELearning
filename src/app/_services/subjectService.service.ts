@@ -70,4 +70,13 @@ export class SubjectService {
   deleteTeacherOfSubject(subjectId: number, teacherManagementId: number): Observable<any> {
     return this.http.get(this.config.url_port + `/subject/delete/${subjectId}/${teacherManagementId}`);
   }
+
+  getSubjectsByDepartmentId(departmentId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/subject/department/${departmentId}`).pipe(map(
+      (data: any) => data = data ? data : []
+    ));
+  }
+  getSubjectInfoBySubjectId(subjectId: number): Observable<Subject> {
+    return this.http.get(this.config.url_port + `/subject/${subjectId}/info`).pipe(map((data: any) => data = data ? data : []));
+  }
 }
