@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'mon-hoc/:subjectId',
     component: DanhSachDeThiComponent
   }, {
-    path: 'tao-de-thi',
+    path: 'tao-de-thi/:structureTestId',
     component: TaoDeThiComponent
   }, {
     path: 'in-de-thi/:examTestId',

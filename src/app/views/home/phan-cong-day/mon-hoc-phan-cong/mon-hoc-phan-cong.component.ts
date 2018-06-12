@@ -30,7 +30,7 @@ export class MonHocPhanCongComponent implements OnInit {
   loadSubject() {
     this.subjectService.getSubjectsByDepartmentId(this.departmentId).subscribe((data: any) => {
       this.subjectModel = data;
-      console.log(this.subjectModel);
+      // console.log(this.subjectModel);
     });
   }
 

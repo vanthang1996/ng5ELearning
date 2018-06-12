@@ -10,17 +10,17 @@ export class BoMonComponent implements OnInit {
   departmentModel: any;
 
   constructor(
-    private route: ActivatedRoute,
     private departmentService: DepartmentService
   ) { }
 
   ngOnInit() {
-    this.loadData();
+    this.loadDepartment();
   }
 
-  loadData() {
+  loadDepartment() {
     this.departmentService.getAllDepartment().subscribe((data: any) => {
       this.departmentModel = data;
+      // console.log(this.departmentModel);
     });
   }
 }
