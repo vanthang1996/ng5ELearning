@@ -55,4 +55,10 @@ export class JobService {
       (data: any) => data = data ? data : []
     ));
   }
+  reviewJobByJobId(jobId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/job/review-job/${jobId}`);
+  }
+  submitJobByJobId(jobId: number): Observable<any> {
+    return this.http.get(this.config.url_port + `/job/submit-job/${jobId}`);
+  }
 }
