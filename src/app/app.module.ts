@@ -1,3 +1,4 @@
+import { NotifyMessageService } from './_services/notify-message.service';
 import { JobService } from './_services/job.service';
 import { NotifyCenter } from './_models/notify-center';
 import { NotifyCenterService } from './_services/notify-center.service';
@@ -101,7 +102,8 @@ const APP_CONTAINERS = [
     },
     HttpErrorFilter,
     JobService,
-    SpringSocketService
+    SpringSocketService,
+    NotifyMessageService
   ],
   bootstrap: [AppComponent]
 })

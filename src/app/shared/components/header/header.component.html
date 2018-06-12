@@ -10,11 +10,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" mat-raised-button color="primary" data-toggle="modal" data-target="#modal-notify">
-          <i class="fas fa-comment"></i>
-          <span class="badge badge-pill badge-light">1</span>
-          Thông báo
-        </a>
+        <app-notify-message></app-notify-message>
       </li>
       <li class="nav-item">
         <a (click)="logout()" class="nav-link" mat-raised-button color="primary" [routerLink]="['/login']">
@@ -23,6 +19,7 @@
     </ul>
   </nav>
 </div>
+
 
 <!-- navbar small -->
 <div class="be-navbar-sm">

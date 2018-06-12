@@ -57,12 +57,13 @@
                 </div>
               </td>
               <td *ngIf="selectJobStatus==0">
-                <div class="form-group">
+                <div *ngIf="job?.jobTypeId!=2" class="form-group">
                   <select class="form-control" [(ngModel)]="job.subject.status">
                     <option value="0">Chưa hoàn thành</option>
                     <option value="1">Hoàn thành</option>
                   </select>
                 </div>
+                <button *ngIf="job?.jobTypeId==2" mat-raised-button color="primary" [routerLink]="[]"  data-toggle="modal" data-target=".xemchitiet-modal-lg">Xem</button>
               </td>
             </tr>
           </tbody>
