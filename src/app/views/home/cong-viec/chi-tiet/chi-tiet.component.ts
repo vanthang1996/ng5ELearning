@@ -42,11 +42,13 @@ export class ChiTietComponent implements OnInit {
   loadData() {
     this.jobService.getJobsOfTeacher(this.current_page, this.limit).subscribe((data: any) => {
       this.jobs = data.listOfResult;
+      console.log(this.jobs);
       this.numberOfPage = data.numberOfPage;
       this.numberOfRecord = data.numberOfRecord;
       this.collectionPageIndex = new Array(this.numberOfPage).fill(0);
     });
   }
+
   jobDetail(jobId: number) {
     this.isCreateQuestion = false;
     jobId = +jobId;
