@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ExamTestService } from '../../../../_services/examtest.service';
+import { ChapterDao } from '../../../../_models/chapterdao';
 
 @Component({
   templateUrl: 'tao-de-thi.component.html'
@@ -32,7 +33,9 @@ export class TaoDeThiComponent implements OnInit {
     });
   }
 
-  changeQuestion() {
-    alert('Trộn câu hỏi!');
+  changeQuestion(chapterDao: ChapterDao) {
+    this.examTestService.chapterDaoReset(chapterDao).subscribe((data: any) => {
+      chapterDao.questions = data.questions;
+    });
   }
 }

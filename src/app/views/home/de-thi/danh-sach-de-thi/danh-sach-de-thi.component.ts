@@ -30,7 +30,7 @@ export class DanhSachDeThiComponent implements OnInit {
   loadData() {
     this.subjectService.getSubjectInfoBySubjectId(this.subjectId).subscribe((data: any) => {
       this.subjectModel = data;
-      // console.log(this.subjectModel);
+      console.log(this.subjectModel);
     });
   }
 }
