@@ -12,7 +12,7 @@
         </mat-expansion-panel-header>
         <mat-chip-list class="py-3">
           <mat-chip [color]="[(c?.levelId == 1) ? 'warn' : 'accent']" selected="true">{{(c?.levelId == 1) ? 'Khó' : 'Dễ'}}</mat-chip>
-          <mat-chip color="primary" selected="true" (click)="changeQuestion()">
+          <mat-chip color="primary" selected="true" (click)="changeQuestion(c)">
             <i class="fas fa-sync-alt fa-spin"></i>&nbsp;Trộn</mat-chip>
         </mat-chip-list>
         <hr/>
