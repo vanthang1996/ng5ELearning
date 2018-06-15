@@ -7,6 +7,10 @@ import { Observable } from 'rxjs/observable';
 import { ChapterDao } from '../_models/chapterdao';
 @Injectable()
 export class ExamTestService {
+  submitExamDao(examDao: any): Observable<any> {
+    return this.http.post(this.config.url_port + `/exam-test/submit`, examDao);
+  }
+
 
   chapterDaoReset(chapterDao: ChapterDao): Observable<any> {
     return this.http.post(this.config.url_port + `/structure/chapter-dao`, chapterDao).pipe(map(
