@@ -14,6 +14,6 @@ export class NotifyMessageService {
     }
     constructor(private http: HttpClient, private config: ConfigValue) { }
     getNotify(page: number, size: number): Observable<any> {
-        return this.http.get(this.config.url_port + `/notify?page=${page}&size=${size}`);
+        return this.http.get(this.config.url_port + `/notify-list?page=${page}&size=${size}`);
     }
 }

@@ -1,5 +1,7 @@
+import { stat } from 'fs';
+import { NotifyCenterService } from './../../../../_services/notify-center.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExamTestService } from '../../../../_services/examtest.service';
 import { ChapterDao } from '../../../../_models/chapterdao';
 
@@ -15,7 +17,9 @@ export class TaoDeThiComponent implements OnInit {
   examTestModel: any;
   constructor(
     private route: ActivatedRoute,
-    private examTestService: ExamTestService
+    private examTestService: ExamTestService,
+    private notifyCenterService: NotifyCenterService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,14 +32,19 @@ export class TaoDeThiComponent implements OnInit {
   loadData() {
     this.examTestService.getExamByStrucId(this.structureTestId).subscribe((data: any) => {
       this.examTestModel = data;
-      console.log(this.examTestModel);
-
     });
   }
 
   changeQuestion(chapterDao: ChapterDao) {
     this.examTestService.chapterDaoReset(chapterDao).subscribe((data: any) => {
       chapterDao.questions = data.questions;
+    });
+  }
+  submitExamDao() {
+    this.examTestService.submitExamDao(this.examTestModel).subscribe((data: any) => {
+      console.log('Id Mã đề thi: ', data);
+      this.notifyCenterService.sendNotifyCenter({ massage: 'Success!', status: null, details: null });
+      this.router.navigate(['/de-thi']);
     });
   }
 }

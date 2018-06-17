@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class ChatComponent implements OnInit {
 
-  private showChatBox = false;
+   showChatBox = false;
 
   constructor() { }
 
