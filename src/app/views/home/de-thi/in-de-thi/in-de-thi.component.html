@@ -108,7 +108,11 @@
           <br/>
           <div *ngFor="let answer of questions.question.answers; let ianswer = index" [attr.data-index]="ianswer">
             <span>
-              <b>{{(ianswer == 0) ? 'A' : (ianswer == 1) ? 'B' : (ianswer ==2) ? 'C' : 'D'}}.</b> {{answer.content}}</span>
+              <span *ngIf="questions.question.answers.length === 1;else other_content"></span>
+              <ng-template #other_content>
+                <b>{{(ianswer == 0) ? 'A' : (ianswer == 1) ? 'B' : (ianswer ==2) ? 'C' : 'D'}}.</b> {{answer.content}}
+              </ng-template>
+            </span>
             <br/>
           </div>
         </div>
