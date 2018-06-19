@@ -58,6 +58,22 @@ export class InDeThiComponent implements OnInit {
     popupWin.document.close();
   }
 
+  printDA(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById('printDA-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=50%,left=50%,height=600px,width=600px');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>In đáp án</title>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+  }
+
   loadDataExamTest(): void {
     this.examTestService.getExamTestById(this.examTestId).subscribe(data => {
       this.examTestModel = data;
@@ -72,7 +88,7 @@ export class InDeThiComponent implements OnInit {
   loadDataExamTestDetail(): void {
     this.examTestDetailSerive.getExamTestDetailById(this.examTestId).subscribe(data => {
       this.examTestDetailModel = data;
-      // console.log(this.examTestDetailModel);
+      console.log(this.examTestDetailModel);
     });
   }
 }

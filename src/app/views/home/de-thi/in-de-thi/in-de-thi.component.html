@@ -64,67 +64,132 @@
       </div>
     </div>
     <div class="my-3 mr-5 text-right">
-      <button class="btn-print" mat-raised-button color="accent" (click)="print()">
-        <i class="fas fa-print fa-lg"></i> In đề thi
-      </button>
     </div>
   </div>
 
-  <div class="container">
-    <mat-card class="p-5" id="print-section">
-      <div style="display: flex; align-items: stretch;">
-        <div style="text-align: center; width: 50%; height: auto;">
-          <span style="text-transform: uppercase;">Bộ giáo dục và đào tạo</span>
-          <br/>
-          <span style="text-transform: uppercase;">{{nameshool}}</span>
-          <br/>
-          <span>---------------</span>
+  <mat-tab-group>
+    <mat-tab label="Đề thi">
+      <div class="container">
+        <div class="text-right my-1">
+          <button class="btn-print" mat-raised-button color="accent" (click)="print()">
+            <i class="fas fa-print fa-lg"></i> In đề thi
+          </button>
         </div>
-        <div style="text-align: center; width: 50%; height: auto;">
-          <span style="text-transform: uppercase; font-weight: bold;">Cộng hoà xã hội chủ nghĩa Việt Nam</span>
-          <br/> Độc lập - Tự do - Hạnh phúc
-          <br/>
-          <span>---------------</span>
-        </div>
-      </div>
-      <br/>
-      <div style="text-align: center;">
-        <span style="text-transform: uppercase; font-size: 16px; font-weight: bold;">Đề thi học kỳ {{semeter}} môn {{subjectModel.subjectName}}</span>
-        <br/>
-        <p>
-          Ngày thi: {{examTestModel.testDay | date: "dd/MM/y" }}
-          <br/> Thời gian thi {{examTestModel.timeDo}} phút (Không kể thời gian phát đề)
-          <br/>
-          <i>{{method}}</i>
-        </p>
-      </div>
-      <div style="margin-top: 30px">
-
-        <div *ngFor="let questions of examTestDetailModel; let idetail = index" [attr.data-index]="idetail" style="margin-bottom: 10px">
-          <span>
-            <b>Câu hỏi {{idetail+1}}:</b>
-            {{questions?.question?.content}}
-          </span>
-          <br/>
-          <div *ngFor="let answer of questions.question.answers; let ianswer = index" [attr.data-index]="ianswer">
-            <span>
-              <span *ngIf="questions.question.answers.length === 1;else other_content"></span>
-              <ng-template #other_content>
-                <b>{{(ianswer == 0) ? 'A' : (ianswer == 1) ? 'B' : (ianswer ==2) ? 'C' : 'D'}}.</b> {{answer.content}}
-              </ng-template>
-            </span>
-            <br/>
+        <mat-card class="p-5" id="print-section">
+          <div style="display: flex; align-items: stretch;">
+            <div style="text-align: center; width: 50%; height: auto;">
+              <span style="text-transform: uppercase;">Bộ giáo dục và đào tạo</span>
+              <br/>
+              <span style="text-transform: uppercase;">{{nameshool}}</span>
+              <br/>
+              <span>---------------</span>
+            </div>
+            <div style="text-align: center; width: 50%; height: auto;">
+              <span style="text-transform: uppercase; font-weight: bold;">Cộng hoà xã hội chủ nghĩa Việt Nam</span>
+              <br/> Độc lập - Tự do - Hạnh phúc
+              <br/>
+              <span>---------------</span>
+            </div>
           </div>
-        </div>
-
-      </div>
-      <div style="margin-top: 10px">
-        <p>
-          <i>{{method}}</i>
           <br/>
-          <i>{{note}}</i>
-        </p>
+          <div style="text-align: center;">
+            <span style="text-transform: uppercase; font-size: 16px; font-weight: bold;">Đề thi học kỳ {{semeter}} môn {{subjectModel.subjectName}}</span>
+            <br/>
+            <p>
+              Ngày thi: {{examTestModel.testDay | date: "dd/MM/y" }}
+              <br/> Thời gian thi {{examTestModel.timeDo}} phút (Không kể thời gian phát đề)
+              <br/>
+              <i>{{method}}</i>
+            </p>
+          </div>
+          <div style="margin-top: 30px">
+
+            <div *ngFor="let questions of examTestDetailModel; let idetail = index" [attr.data-index]="idetail" style="margin-bottom: 10px">
+              <span>
+                <b>Câu hỏi {{idetail+1}}:</b>
+                {{questions?.question?.content}}
+              </span>
+              <br/>
+              <div *ngFor="let answer of questions.question.answers; let ianswer = index" [attr.data-index]="ianswer">
+                <span>
+                  <span *ngIf="questions.question.answers.length === 1;else other_content"></span>
+                  <ng-template #other_content>
+                    <b>{{(ianswer == 0) ? 'A' : (ianswer == 1) ? 'B' : (ianswer ==2) ? 'C' : 'D'}}.</b> {{answer.content}}
+                  </ng-template>
+                </span>
+                <br/>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 10px">
+            <p>
+              <i>{{method}}</i>
+              <br/>
+              <i>{{note}}</i>
+            </p>
+          </div>
+        </mat-card>
       </div>
-    </mat-card>
-  </div>
+    </mat-tab>
+    <mat-tab label="Đáp án">
+      <div class="container">
+        <div class="text-right my-1">
+          <button class="btn-print" mat-raised-button color="accent" (click)="printDA()">
+            <i class="fas fa-print fa-lg"></i> In đáp án
+          </button>
+        </div>
+        <mat-card class="p-5" id="printDA-section">
+          <div style="display: flex; align-items: stretch;">
+            <div style="text-align: center; width: 50%; height: auto;">
+              <span style="text-transform: uppercase;">Bộ giáo dục và đào tạo</span>
+              <br/>
+              <span style="text-transform: uppercase;">{{nameshool}}</span>
+              <br/>
+              <span>---------------</span>
+            </div>
+            <div style="text-align: center; width: 50%; height: auto;">
+              <span style="text-transform: uppercase; font-weight: bold;">Cộng hoà xã hội chủ nghĩa Việt Nam</span>
+              <br/> Độc lập - Tự do - Hạnh phúc
+              <br/>
+              <span>---------------</span>
+            </div>
+          </div>
+          <br/>
+          <div style="text-align: center;">
+            <span style="text-transform: uppercase; font-size: 16px; font-weight: bold;">Đáp án đề thi học kỳ {{semeter}} môn {{subjectModel.subjectName}}</span>
+            <br/>
+            <p>
+              Ngày thi: {{examTestModel.testDay | date: "dd/MM/y" }}
+              <br/> Thời gian thi {{examTestModel.timeDo}} phút (Không kể thời gian phát đề)
+              <br/>
+              <i>{{method}}</i>
+            </p>
+          </div>
+          <div style="margin-top: 30px">
+            <div *ngFor="let questions of examTestDetailModel; let idetail = index" [attr.data-index]="idetail" style="margin-bottom: 10px">
+              <span>
+                <b>Câu hỏi {{idetail+1}}:</b>
+                {{questions?.question?.content}}
+              </span>
+              <br/>
+              <div *ngFor="let answer of questions.question.answers">
+                <span class="text-danger">{{(answer?.correctAnswer) ? ('Đáp án: ' + answer.content) : ''}}
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div style="margin-top: 10px">
+            <p>
+              <i>{{method}}</i>
+              <br/>
+              <i>{{note}}</i>
+            </p>
+          </div>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
 </div>
