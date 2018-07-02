@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient, HttpRequest } from '@angular/common/http';
 import { ConfigValue } from '../../_helpers/config-value';
 
 @Component({
@@ -25,10 +25,12 @@ export class LoginComponent implements OnInit {
     private config: ConfigValue,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private springSocketService: SpringSocketService
+    private springSocketService: SpringSocketService,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
+    // this.getLocation();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     if (localStorage.getItem(this.config.remember)) {
       this.userRemember = JSON.parse(atob(localStorage.getItem(this.config.remember)));
@@ -76,4 +78,28 @@ export class LoginComponent implements OnInit {
         });
     }
   }
+
+  // getLocation() {
+  //   if (navigator.geolocation) {
+  //     console.log(navigator.geolocation.watchPosition);
+  //     navigator.geolocation.getCurrentPosition(this.showPosition.bind(this));
+  //   }
+  // }
+
+  // showPosition(position) {
+  //   console.log(position.coords.latitude);
+  //   console.log(position.coords.longitude);
+    // tslint:disable-next-line:max-line-length
+  //   const link = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=8d71d589958b4ab13399b87530105ee6`;
+    // tslint:disable-next-line:max-line-length
+  //   console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=8d71d589958b4ab13399b87530105ee6`);
+  //   // tslint:disable-next-line:max-line-length
+  //   this.http.get(`http://api.openweathermap.org/data/2.5/weather?lat=${
+  //     position.coords.latitude}&lon=${position.coords.longitude}&appid=8d71d589958b4ab13399b87530105ee6`)
+  //     .subscribe((data: any) => {
+  //       console.log(data);
+  //     });
+  //   const req = new HttpRequest('GET', link);
+  //   return this.http.request(req).subscribe(data => console.log(data));
+  // }
 }

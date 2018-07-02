@@ -28,7 +28,7 @@ export class NotifyMessageComponent implements OnInit {
   }
   loadNumberNotify() {
     this.notifyMessageService.numberNotify().subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.numberOfNotifyMessage = data;
     });
   }
@@ -45,7 +45,7 @@ export class NotifyMessageComponent implements OnInit {
   loadData() {
     this.notifyMessageService.getNotify(this.current_page, this.limit).subscribe((data: any) => {
       this.listNotify = data.listOfResult;
-      console.log(data);
+      // console.log(data);
     });
     this.showNotify = !this.showNotify;
   }
