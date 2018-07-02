@@ -89,8 +89,9 @@
                   <!-- <i class="fas fa-angle-double-left"></i> -->&laquo;
                 </a>
               </li>
-              <li *ngFor="let item of collectionPageIndex; let i = index" [class]="'page-item '+[(i+1)==current_page? 'text-danger active ': '' ]">
-                <a class="page-link" (click)=(movePage(i+1))>{{i+1}}</a>
+              <li *ngFor="let item of collectionPageShow" [class]="'page-item '+[item==current_page? 'text-danger active ': '' ]">
+                <!-- <a *ngIf="numberShowPage(i+1,current_page,collectionPageIndex.length)" class="page-link" (click)=(movePage(i+1))>{{i+1}}</a> -->
+                <a class="page-link" (click)=(movePage(item))>{{item}}</a>
               </li>
               <li *ngIf="(current_page < numberOfPage) && (numberOfPage > 1)" class="page-item">
                 <a class="page-link" (click)=(movePage(current_page+1))>
