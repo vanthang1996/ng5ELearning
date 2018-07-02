@@ -1,9 +1,117 @@
 <div class="container-fluid">
-  <mat-card class="p-3 mb-3 main-title">
+  <mat-card class="p-3 my-3 main-title">
     <h3>Xin chào {{ teacher?teacher?.firstName: '...' }} {{ teacher?teacher?.lastName: '...' }}</h3>
   </mat-card>
 
-  <div class="row mb-3">
+  <div class="row">
+    <div class="col-md-12 col-lg-6">
+      <mat-card *ngFor="let w of weathers?.weather" class="mt-3 mb-5 weather-content">
+        <mat-card-header class="p-3">
+          <mat-card-title>
+            <h3>{{weathers?.name}}
+              <small class="text-secondary">{{weathers?.sys?.country}}</small>
+            </h3>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="m-0 p-2 pb-5">
+          <h1 class="font-weight-bold text-center text-danger" style="font-size: 80px">
+            {{weathers?.main?.temp}}
+            <sup>o</sup>C
+          </h1>
+          <h5 class="text-center">
+            {{w?.main}} - {{w?.description}}
+          </h5>
+        </mat-card-content>
+        <mat-card-actions class="p-0 m-0">
+          <div class="text-center m-0 py-3 text-light" style="background: #3f51b5">
+            <div class="text-center">
+              <img alt="Icon" [src]="['http://openweathermap.org/img/w/' + w?.icon + '.png']">
+            </div>
+            <span>
+              {{ (weathers?.main?.temp_min) ? 'Thấp nhất: ' + weathers?.main?.temp_min : '' }}
+              <sup>o</sup>C - {{ (weathers?.main?.temp_max) ? 'Cao nhất: ' + weathers?.main?.temp_min : '' }}
+              <sup>o</sup>C
+            </span>
+            <br/>
+            <span>{{ (weathers?.wind?.speed) ? 'Sức gió: ' + weathers?.wind?.speed + 'knot' : '' }}</span>
+            <span>{{ (weathers?.wind?.deg) ? ' - Hướng gió: ' + weathers?.wind?.deg : '' }}</span>
+            <span>{{ (weathers?.main?.humidity) ? ' - Độ ẩm: ' + weathers?.main?.humidity + '%' : '' }}</span>
+            <span>{{ (weathers?.clouds?.all) ? ' - Mây: ' + weathers?.clouds?.all + '%' : '' }}</span>
+            <br/>
+            <span>{{ (weathers?.main?.pressure) ? 'Áp suất khí quyển: ' + weathers?.main?.pressure + 'hPa' : '' }}</span>
+            <span>
+              {{ (weathers?.main?.sea_level) ? ' - Áp suất khí quyển trên mặt nước biển: ' + weathers?.main?.sea_level + 'hPa' : '' }}
+            </span>
+            <span>
+              {{ (weathers?.main?.grnd_level) ? ' - Áp suất khí quyển trên mặt đất: ' + weathers?.main?.grnd_level + 'hPa' : '' }}
+            </span>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-md-12 col-lg-6">
+      <mat-card class="mt-3 mb-3">
+        <mat-card-content class="m-0 p-2">
+          <div class="font-weight-bold text-center text-danger m-0 p-0" style="font-size: 80px">
+            <span>{{ today | date:'HH' }}</span> :
+            <span>{{ today | date:'mm' }}</span> :
+            <span>{{ today | date:'ss' }}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="p-0 m-0">
+          <div class="text-center m-0 py-3 text-light" style="background: #3f51b5">
+            {{ today }}
+          </div>
+        </mat-card-actions>
+      </mat-card>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6 my-2">
+          <mat-card class="py-3">
+            <div class="text-center">
+              <i class="fab fa-facebook" style="font-size: 50px; color: #4267b2"></i>
+              <a href="https://www.facebook.com/shunkii">
+                @Phat
+              </a>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-sm-12 col-md-6 my-2">
+          <mat-card class="py-3">
+            <div class="text-center">
+              <i class="fab fa-facebook" style="font-size: 50px; color: #4267b2"></i>
+              <a href="https://www.facebook.com/vanthang1996.mrTeo">
+                @Thang
+              </a>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-sm-12 col-md-6 my-2">
+          <mat-card class="py-3">
+            <div class="text-center">
+              <i class="fab fa-github" style="font-size: 50px"></i>
+              <a href="https://github.com/nguyenphatit">
+                @Phat
+              </a>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-sm-12 col-md-6 my-2">
+          <mat-card class="py-3">
+            <div class="text-center">
+              <i class="fab fa-github" style="font-size: 50px"></i>
+              <a href="https://github.com/vanthang1996">
+                @Thang
+              </a>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row my-2">
     <div class="col-sm-6 col-md-6 col-lg-3 mb-2">
       <mat-card class="pb-2">
         <div class="tech-dev text-center">

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { ConfigValue } from './../_helpers/config-value';
 import { Teacher } from '../_models';
-import { HttpRequest } from 'selenium-webdriver/http';
 import { Observable } from 'rxjs/observable';
 
 @Injectable()
